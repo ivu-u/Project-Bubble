@@ -121,7 +121,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SideNormalStrength: 1
+    - _SideNormalStrength: 5.25
     - _SideScale: 10
     - _SideSmoothness: 0.11
     - _Smoothness: 0.5
@@ -130,9 +130,9 @@ Material:
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _TopNormalStrength: 5.8
+    - _TopNormalStrength: 2.34
     - _TopScale: 10
-    - _TopSmoothness: 0.24
+    - _TopSmoothness: 0.31
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

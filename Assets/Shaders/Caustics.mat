@@ -32,6 +32,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CausticDistortTex:
+        m_Texture: {fileID: 2800000, guid: e54fd2cd8f1b01946a63231b607b31db, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CausticsTex:
         m_Texture: {fileID: 2800000, guid: cf7d28ad658bd9f4583f96e01fcb4911, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -92,6 +96,7 @@ Material:
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
     - _CausticsBoost: 5
+    - _CausticsDistortion: 0
     - _CausticsLerpSpeed: 4
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -123,6 +128,8 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _CausticDistortMovement: {r: 0.2, g: 0.4, b: 0, a: 0}
+    - _CausticsDistortTiling: {r: 1, g: 1, b: 0, a: 0}
     - _CausticsIntensityMinMax: {r: 0.5, g: 1.5, b: 0, a: 0}
     - _CausticsMovement: {r: -0.5, g: -0.5, b: 0, a: 0}
     - _CausticsTiling: {r: 2, g: 1, b: 0, a: 0}
