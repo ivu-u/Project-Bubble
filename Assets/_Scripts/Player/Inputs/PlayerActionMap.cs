@@ -31,7 +31,7 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
                     ""name"": ""Walk"",
                     ""type"": ""Value"",
                     ""id"": ""c8ccc8b8-2e15-4fb5-834b-c3fdbfa50c70"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -48,9 +48,9 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""0bb9481c-0143-45c9-bb05-769426bb366d"",
-                    ""path"": ""1DAxis"",
+                    ""name"": ""2D Vector"",
+                    ""id"": ""229ab52d-6cf3-47e5-abfd-05de783445af"",
+                    ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -59,8 +59,30 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""negative"",
-                    ""id"": ""db5d9a27-281b-4762-9ef9-0716ae553fe9"",
+                    ""name"": ""up"",
+                    ""id"": ""3e280da1-7644-4c78-aecf-f583128d1fde"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d360bd65-d58d-45b8-892d-505a88ea5eda"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c1cbdb1f-3625-4974-868b-854e80cb8de3"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -70,8 +92,8 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""positive"",
-                    ""id"": ""2404d4aa-ec05-405f-b4ff-497c538cd962"",
+                    ""name"": ""right"",
+                    ""id"": ""df728195-4bf1-43c8-b50e-47482e9b840f"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -83,7 +105,7 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5ebaada1-9cfc-4f25-8fb6-a82b75fd34a7"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -98,9 +120,18 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
             ""id"": ""0c3b1fd1-a29e-4d07-b504-181083fdf52b"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""ShootBubble"",
                     ""type"": ""Button"",
-                    ""id"": ""d9f6e400-7e36-4fe0-b11b-774511ef4415"",
+                    ""id"": ""9c070ddf-eb53-4224-9258-5b15b61fc37a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""779c1fa8-1016-4fb0-8336-d4b104978306"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -110,12 +141,23 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""0711c9b6-4352-4849-b73f-a050ba22bd70"",
-                    ""path"": """",
+                    ""id"": ""981cc735-0afc-4e06-b4cd-aeff328cbf6d"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""ShootBubble"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""213598e4-4298-42ff-aff2-bf6dcae8b773"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -130,7 +172,8 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
         m_Movement_Jump = m_Movement.FindAction("Jump", throwIfNotFound: true);
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
-        m_Actions_Newaction = m_Actions.FindAction("New action", throwIfNotFound: true);
+        m_Actions_ShootBubble = m_Actions.FindAction("ShootBubble", throwIfNotFound: true);
+        m_Actions_Attack = m_Actions.FindAction("Attack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -246,12 +289,14 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
     // Actions
     private readonly InputActionMap m_Actions;
     private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
-    private readonly InputAction m_Actions_Newaction;
+    private readonly InputAction m_Actions_ShootBubble;
+    private readonly InputAction m_Actions_Attack;
     public struct ActionsActions
     {
         private @PlayerActionMap m_Wrapper;
         public ActionsActions(@PlayerActionMap wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Actions_Newaction;
+        public InputAction @ShootBubble => m_Wrapper.m_Actions_ShootBubble;
+        public InputAction @Attack => m_Wrapper.m_Actions_Attack;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -261,16 +306,22 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_ActionsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_ActionsActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @ShootBubble.started += instance.OnShootBubble;
+            @ShootBubble.performed += instance.OnShootBubble;
+            @ShootBubble.canceled += instance.OnShootBubble;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @ShootBubble.started -= instance.OnShootBubble;
+            @ShootBubble.performed -= instance.OnShootBubble;
+            @ShootBubble.canceled -= instance.OnShootBubble;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -295,6 +346,7 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
     }
     public interface IActionsActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnShootBubble(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
     }
 }
