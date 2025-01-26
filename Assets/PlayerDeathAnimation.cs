@@ -54,6 +54,7 @@ public class PlayerDeathAnimation : MonoBehaviour {
             rend.SetPropertyBlock(mpb);
         }
         visualAsset.DOScale(1f, 1.3f).SetEase(Ease.OutBounce);
+        visualAsset.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     private IEnumerator DeathEventAction() {

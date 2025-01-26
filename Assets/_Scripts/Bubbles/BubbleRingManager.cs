@@ -56,12 +56,16 @@ public class BubbleRingManager : MonoBehaviour
         UpdateRing();
     }
 
-    public void RemoveBubble(GameObject bubble) {
+    private void RemoveBubble(GameObject bubble) {
         //GameObject obj = _heldBubbles[_heldBubbles.Count - 1];
-        _heldBubbles.Remove(bubble);
-        Destroy(bubble);
-        UpdateRing();
+        Bubble bScript = bubble.GetComponent<Bubble>();
+        bScript.PopBubble();
     }
+
+    public void DiscardBubbleRef(GameObject bubbleGO) {
+        _heldBubbles.Remove(bubbleGO);
+        UpdateRing();
+    } 
 
     private void RotateRing() {
         // Increment the rotation angle based on time and speed
