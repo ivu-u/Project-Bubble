@@ -510,8 +510,13 @@ MonoBehaviour:
   - roomTag: 0
     sceneRef:
       sceneAsset: {fileID: 102900000, guid: 1e5beef838ebd4f4c89c37677b6db04d, type: 3}
-      isDirty: 1
+      isDirty: 0
       scenePath: Assets/Scenes/Vu/Environment_Test.unity
+  - roomTag: 1
+    sceneRef:
+      sceneAsset: {fileID: 102900000, guid: 3f0fee1c4f63c4b429248bdb260ae41d, type: 3}
+      isDirty: 0
+      scenePath: Assets/Scenes/Vu/Level 2.unity
 --- !u!1 &3614557491606179609
 GameObject:
   m_ObjectHideFlags: 0
