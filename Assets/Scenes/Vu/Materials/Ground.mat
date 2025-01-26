@@ -77,11 +77,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TopBump:
-        m_Texture: {fileID: 2800000, guid: 6534600e7e6fd6545822c823648f4af3, type: 3}
+        m_Texture: {fileID: 2800000, guid: cea2b500c7df22148852546eedf3cdd1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TopTex:
-        m_Texture: {fileID: 2800000, guid: e830e0c88e583944c8b8d3bb85987b6d, type: 3}
+        m_Texture: {fileID: 2800000, guid: f6cfa49956406b44580da540d98cea5a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -121,18 +121,18 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _SideNormalStrength: 2.28
+    - _SideNormalStrength: 0.98
     - _SideScale: 10
-    - _SideSmoothness: 0.11
+    - _SideSmoothness: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Surface: 0
-    - _TopNormalStrength: 1.8
+    - _TopNormalStrength: 8.44
     - _TopScale: 1.6
-    - _TopSmoothness: 0.212
+    - _TopSmoothness: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
