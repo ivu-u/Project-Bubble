@@ -1544,6 +1544,16 @@ PrefabInstance:
       propertyPath: _moveSpeed
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 7221941521308686655, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: spawnChance
+      value: 0.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 7221941521308686655, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: spawnInterval
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9025425791181059901, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
         type: 3}
       propertyPath: m_LocalPosition.x
