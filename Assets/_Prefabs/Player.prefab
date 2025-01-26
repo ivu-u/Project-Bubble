@@ -92,7 +92,7 @@ MonoBehaviour:
   _throwSpeed: 160
   _airMoveSpeed: 0
   deathRespawnTime: 1
-  groundCastTolerance: 1.25
+  groundCastTolerance: 0.74
   _firePoint: {fileID: 979336780497530935}
   minForce: 1
   maxForce: 10
@@ -130,6 +130,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   inputBufferTime: 0.1
+  capsuleRadius: 0.41
 --- !u!114 &3823004662442290205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +613,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1612567410557280152}
   playerRef: {fileID: 6295072343839011313}
+  positionAmplitude: 1
+  positionFrequency: 1
+  scaleAmplitude: 0.5
+  scaleFrequency: 1.5
+  offset: 2
 --- !u!114 &7799332963455407106 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2894571579659948764, guid: c27cb69f32310d64c9874e8bf49a777e,
