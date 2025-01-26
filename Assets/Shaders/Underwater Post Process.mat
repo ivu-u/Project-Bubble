@@ -54,15 +54,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth: 34.41
+    - _Depth: 7.83
     - _DepthCutoff: 1
-    - _DepthPower: 3.3
+    - _DepthPower: 4.35
     - _DistortionPixelate: 256
-    - _DistortionStrength: 0.0241
+    - _DistortionStrength: 0.012
     - _DropsDistortion: 0.21
     - _DropsLensMaskPower: 6.04
     - _DropsOpacity: 0.672
-    - _LensWarp: 0.84
+    - _LensWarp: 0.7
     - _RoundMaskStrength: 70000
     - _SquareMaskStrength: 100
     - _VignettePower: 5.91
