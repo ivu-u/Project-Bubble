@@ -88,6 +88,7 @@ MonoBehaviour:
   _jumpPower: 10
   _throwDelay: 0.1
   _throwSpeed: 160
+  groundCastTolerance: 1.25
   _firePoint: {fileID: 979336780497530935}
   _movementCurve:
     serializedVersion: 2
@@ -134,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc0a2a2d6aaefe42827ccc9f5fb8c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRef: {fileID: 6295072343839011313}
   _bubble: {fileID: 7008878021092109847, guid: 1af45b19d77dc794db653d3897591e71, type: 3}
   _maxNumOfBubbles: 8
   _ringRadius: 1.2
@@ -380,6 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f908b0493ddc60b40b959b6f2c6b7327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerRef: {fileID: 6295072343839011313}
   _moveSpeed: 150
   _moveRadius: 0.5
 --- !u!1 &8227828236013455289
@@ -488,7 +491,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 817417784471694884, guid: c27cb69f32310d64c9874e8bf49a777e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c27cb69f32310d64c9874e8bf49a777e, type: 3}

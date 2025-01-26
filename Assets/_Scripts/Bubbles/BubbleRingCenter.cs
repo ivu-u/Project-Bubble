@@ -10,6 +10,7 @@ using DG.Tweening;
 /// </summary>
 public class BubbleRingCenter : MonoBehaviour
 {
+    [SerializeField] private Player playerRef;
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private float _moveRadius = 0.1f;
     private Transform _c;   // parent transform
@@ -22,8 +23,8 @@ public class BubbleRingCenter : MonoBehaviour
         _t = transform;
         _c = GetComponentInParent<Transform>();
         _startingPos = _t.localPosition;
-        Player.OnMovingRing += MoveRing;
-        Player.OnStopMovingRing += StopMoveRing;
+        playerRef.OnMovingRing += MoveRing;
+        playerRef.OnStopMovingRing += StopMoveRing;
     } 
 
     void Update() {
