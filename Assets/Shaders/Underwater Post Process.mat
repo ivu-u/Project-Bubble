@@ -54,18 +54,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth: 7.83
+    - _Depth: 1431
     - _DepthCutoff: 1
     - _DepthPower: 4.35
     - _DistortionPixelate: 256
-    - _DistortionStrength: 0.012
+    - _DistortionStrength: 0.0025
     - _DropsDistortion: 0.21
-    - _DropsLensMaskPower: 6.04
+    - _DropsLensMaskPower: 14.62
     - _DropsOpacity: 0.672
-    - _LensWarp: 0.7
+    - _LensWarp: 0.95
     - _RoundMaskStrength: 70000
     - _SquareMaskStrength: 100
-    - _VignettePower: 5.91
+    - _VignettePower: 1.05
     m_Colors:
     - _Distortion1: {r: 0.1, g: 0.03, b: 0, a: 0}
     - _Distortion2: {r: 0.02, g: 0.05, b: 0, a: 0}
