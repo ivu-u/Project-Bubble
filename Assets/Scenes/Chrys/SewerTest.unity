@@ -612,18 +612,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1853644425}
   m_SourcePrefab: {fileID: 100100000, guid: e7ec7437de2bb384da8e2cfa2d374d64, type: 3}
---- !u!114 &1124018163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4978580944403414348, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7655382264045864507}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3b6d439fcde70a48a86900cd98160c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1195170010
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,18 +835,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1718523374 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7799332963455407106, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
-    type: 3}
-  m_PrefabInstance: {fileID: 7655382264045864507}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de96e42771b52fa4eb97e72c2754b1dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1724734593 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -674449036139524865, guid: e7ec7437de2bb384da8e2cfa2d374d64,
@@ -1256,30 +1232,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 955420839100371945, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 1718523374}
-    - target: {fileID: 955420839100371945, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
-        type: 3}
-      propertyPath: quadAnimators.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 955420839100371945, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
-        type: 3}
-      propertyPath: quadAnimators.Array.data[0]
-      value: 
-      objectReference: {fileID: 1124018163}
     - target: {fileID: 3925598824289032028, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8922408269291900453, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9025425791181059901, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
         type: 3}

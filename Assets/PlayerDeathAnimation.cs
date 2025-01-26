@@ -8,6 +8,7 @@ using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 public class PlayerDeathAnimation : MonoBehaviour {
+    [SerializeField] private Player player;
     [SerializeField] private Transform visualAsset;
     [SerializeField] private GameObject visualEffectPrefab;
     [SerializeField] private GameObject ragdollPrefab;
@@ -18,6 +19,11 @@ public class PlayerDeathAnimation : MonoBehaviour {
 
     private List<MeshRenderer> _meshes;
     private Dictionary<MeshRenderer, MaterialPropertyBlock> propertyBlocks;
+
+    private void Awake() {
+        player.OnDeath += RunDeathAnimation;
+        player.OnSpawn += Respawn;
+    }
 
     private void Start() {
         propertyBlocks = new Dictionary<MeshRenderer, MaterialPropertyBlock>();
@@ -30,11 +36,6 @@ public class PlayerDeathAnimation : MonoBehaviour {
             propertyBlocks.Add(rend, mpb);
         }
     }
-
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.K)) { RunDeathAnimation(); }
-    }
-
     public void RunDeathAnimation() {
         StartCoroutine(DeathEventAction());
     }
@@ -50,7 +51,7 @@ public class PlayerDeathAnimation : MonoBehaviour {
             MeshRenderer rend = kvp.Key;
             MaterialPropertyBlock mpb = kvp.Value;
 
-            mpb.SetFloat("_Dissolve", -0.5f);
+            mpb.SetFloat("_Dissolve", -0f);
             rend.SetPropertyBlock(mpb);
         }
     }
@@ -60,12 +61,12 @@ public class PlayerDeathAnimation : MonoBehaviour {
         foreach (QuadAnimator qAnimator in quadAnimators) {
             qAnimator.enabled = false;
         }
-        visualAsset.DOShakeRotation(deathTime * 2, new Vector3(15f, 0, 0), 20);
+        //visualAsset.DOShakeRotation(deathTime * 2, new Vectr3(15f, 0, 0), 20);
         yield return new WaitForSeconds(deathTime / 3);
-        visualAsset.DOScale(0f, deathTime * 2).SetEase(Ease.InBounce);
+        visualAsset.DOScale(0.01f, deathTime * 2).SetEase(Ease.InBounce);
         VisualEffect effect = Instantiate(visualEffectPrefab, visualAsset.transform.position, Quaternion.identity)
             .GetComponent<VisualEffect>();
-        effect.gameObject.SetActive(false);
+        //effect.gameObject.SetActive(false);
         foreach (var kvp in propertyBlocks)
         {
             MeshRenderer rend = kvp.Key;
@@ -83,7 +84,7 @@ public class PlayerDeathAnimation : MonoBehaviour {
     
     void Dissolve(MeshRenderer renderer, MaterialPropertyBlock mpb)
     {
-        float currDissolve = -0.5f;
+        float currDissolve = 0f;
 
         DOTween.To(() => currDissolve, x => {
                 currDissolve = x;
