@@ -29,7 +29,7 @@ public class PlayerDeathAnimation : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.K)) {RunDeathAnimation();}
+        if (Input.GetKeyDown(KeyCode.K)) { RunDeathAnimation(); }
     }
 
     public void RunDeathAnimation() {

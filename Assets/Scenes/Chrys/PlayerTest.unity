@@ -123,28 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &296291634 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 628700636888651977, guid: c27cb69f32310d64c9874e8bf49a777e,
-    type: 3}
-  m_PrefabInstance: {fileID: 9199897864707681815}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &296291638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 296291634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27847be7d33006241a51cd2836bfe008, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visualAsset: {fileID: 0}
-  visualEffectPrefab: {fileID: 0}
-  ragdollPrefab: {fileID: 0}
-  deathTime: 1.5
 --- !u!1 &432605407
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,14 +1709,12 @@ PrefabInstance:
       propertyPath: childBobFrequency
       value: 8.75
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8793376233993297792, guid: c27cb69f32310d64c9874e8bf49a777e, type: 3}
+    - {fileID: 5317798828778413377, guid: c27cb69f32310d64c9874e8bf49a777e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 628700636888651977, guid: c27cb69f32310d64c9874e8bf49a777e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 296291638}
     - targetCorrespondingSourceObject: {fileID: 1741486551334795280, guid: c27cb69f32310d64c9874e8bf49a777e,
         type: 3}
       insertIndex: -1
