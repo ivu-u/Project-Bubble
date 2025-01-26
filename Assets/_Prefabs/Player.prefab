@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 3104111255046288594}
   - component: {fileID: 7221941521308686655}
   - component: {fileID: 1027671453436249305}
+  - component: {fileID: 2428786083076159288}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -93,6 +94,8 @@ MonoBehaviour:
   deathRespawnTime: 1
   groundCastTolerance: 1.25
   _firePoint: {fileID: 979336780497530935}
+  minForce: 1
+  maxForce: 10
   _movementCurve:
     serializedVersion: 2
     m_Curve:
@@ -239,6 +242,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2524644591785761800}
   maxVelocity: 7
+--- !u!114 &2428786083076159288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925598824289032028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945d974d27ff27b418ac563a0cad7e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4051579160038885061
 GameObject:
   m_ObjectHideFlags: 0
