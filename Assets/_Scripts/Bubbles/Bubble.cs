@@ -33,7 +33,8 @@ public class Bubble : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         // ground check
-        if (!other.CompareTag("Ground")) { return; }
+        if (!other.CompareTag("Ground")
+            || other.gameObject.layer == 8) { return; }
 
         // player check
         if (other.TryGetComponent(out Player p)) {
