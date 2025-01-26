@@ -48,7 +48,6 @@ GameObject:
   - component: {fileID: 3104111255046288594}
   - component: {fileID: 7221941521308686655}
   - component: {fileID: 1027671453436249305}
-  - component: {fileID: 2428786083076159288}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -87,10 +86,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 7718a43ea4a31b24baf1147982aabf90, type: 2}
-  _moveSpeed: 10
+  _moveSpeed: 11
   _jumpPower: 10
   _throwDelay: 0.1
   _throwSpeed: 160
+  _airMoveSpeed: 0
   deathRespawnTime: 1
   groundCastTolerance: 1.25
   _firePoint: {fileID: 979336780497530935}
@@ -129,6 +129,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  inputBufferTime: 0.1
 --- !u!114 &3823004662442290205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,18 +243,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 2524644591785761800}
   maxVelocity: 7
---- !u!114 &2428786083076159288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3925598824289032028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 945d974d27ff27b418ac563a0cad7e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4051579160038885061
 GameObject:
   m_ObjectHideFlags: 0
