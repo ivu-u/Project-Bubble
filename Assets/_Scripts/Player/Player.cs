@@ -13,9 +13,21 @@ public partial class Player : MonoBehaviour {
     private PlayerActionMap _playerActionMap;
     public PlayerActionMap PlayerActionMap => _playerActionMap;
 
-
+    #region Data Attributes
     [SerializeField] private PlayerData _data;
     public PlayerData Data => Data;
+
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _jumpPower;
+    [SerializeField] private float _throwDelay;
+    [SerializeField] private float _throwSpeed;
+
+    // Accessors
+    public float MoveSpeed => _moveSpeed;
+    public float JumpPower => _jumpPower;
+    public float ThrowDelay => _throwDelay;
+    public float ThrowSpeed => _throwSpeed;
+    #endregion
 
     void Awake() {
         _playerActionMap = new PlayerActionMap();
@@ -24,12 +36,25 @@ public partial class Player : MonoBehaviour {
 
     void Start() {
         _t = transform;
+        _rb = GetComponent<Rigidbody>();
+        _coll = GetComponent<Collider>();
 
         // subscribe to events
-        _playerActionMap.Movement.Walk.performed += PlayerMovement;
+        _playerActionMap.Movement.Jump.performed += Jump;
+        _playerActionMap.Actions.ShootBubble.performed += Shoot;
+        _playerActionMap.Actions.MoveRing.performed += MoveRing;
+        _playerActionMap.Actions.MoveRing.canceled += MoveRing;
+        _playerActionMap.Enable();
     }
 
     protected void InitializeAttributes() {
-
+        _moveSpeed = _data.MoveSpeed;
+        _jumpPower = _data.JumpPower;
+        _throwDelay = _data.ThrowDelay;
+        _throwSpeed = _data.ThrowSpeed;
     }
+
+    //public PlayerActionMap GetActionMap() {
+    //    return _playerActionMap;
+    //}
 }
