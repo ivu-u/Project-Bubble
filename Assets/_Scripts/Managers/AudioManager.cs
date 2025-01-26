@@ -8,7 +8,8 @@ public class AudioManager : MonoBehaviour {
     [SerializeField] private SFXSourceGroup sfxSource;
     [SerializeField] private SoundClip[] musicClips, sfxClips;
 
-    private readonly Dictionary<string, AudioClip> musicMap, sfxMap;
+    private readonly Dictionary<string, AudioClip> musicMap = new(),
+                                                   sfxMap = new();
 
     public float MusicVolume { get; private set; }
     public float SFXVolume { get; private set; }
@@ -23,18 +24,16 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void PlayMusic(string clipName) {
-        if (musicMap.ContainsKey(clipName)) {
-            AudioClip clip = musicMap[clipName];
+        if (musicMap.TryGetValue(clipName, out AudioClip clip)) {
             musicSource.clip = clip;
             musicSource.Play();
-        }
+        } else Debug.LogWarning($"Can't find Music Clip named '{clipName}'");
     }
 
     public void PlaySFX(string clipName) {
-        if (sfxMap.ContainsKey(clipName)) {
-            AudioClip clip = sfxMap[clipName];
+        if (sfxMap.TryGetValue(clipName, out AudioClip clip)) {
             sfxSource.Play(clip);
-        }
+        } else Debug.LogWarning($"Can't find Sound Clip named '{clipName}'");
     }
 }
 

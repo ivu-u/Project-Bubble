@@ -186,7 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6113318966031991703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc81fc8b5af1a74cbba62e1a0a73131, type: 3}
+  m_Script: {fileID: 11500000, guid: f09799f076138964cb39e4963b63638e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8782714745020249393}
@@ -350,6 +350,10 @@ MonoBehaviour:
   scaleTime: 0.2
   scaleSpeed: 2
   popTime: 0.1
+  popAwaitTime: 0.5
+  popImmediate: 1
+  parSystem: {fileID: 0}
+  buttonType: 0
 --- !u!114 &5864753563771558283
 MonoBehaviour:
   m_ObjectHideFlags: 0
