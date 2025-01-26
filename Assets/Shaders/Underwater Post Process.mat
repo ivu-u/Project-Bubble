@@ -32,6 +32,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 396c8d96f132e92418ddd24d1e3eba7a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HalftoneTex:
+        m_Texture: {fileID: 2800000, guid: 730f7a6302604a845a77370f3c5e7dea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Texture2DAsset_a7548506af2d4630a90cbb284e6f9c17_Out_0_Texture2D:
         m_Texture: {fileID: 2800000, guid: e54fd2cd8f1b01946a63231b607b31db, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -50,20 +54,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth: 38.57
-    - _DepthCutoff: 0.959
-    - _DepthPower: 3
-    - _DistortionStrength: 0.0126
-    - _DropsDistortion: 0.17
+    - _Depth: 34.41
+    - _DepthCutoff: 1
+    - _DepthPower: 3.3
+    - _DistortionPixelate: 256
+    - _DistortionStrength: 0.0241
+    - _DropsDistortion: 0.21
     - _DropsLensMaskPower: 6.04
     - _DropsOpacity: 0.672
-    - _LensWarp: 0.68
+    - _LensWarp: 0.84
     - _RoundMaskStrength: 70000
     - _SquareMaskStrength: 100
-    - _VignettePower: 1.96
+    - _VignettePower: 5.91
     m_Colors:
     - _Distortion1: {r: 0.1, g: 0.03, b: 0, a: 0}
     - _Distortion2: {r: 0.02, g: 0.05, b: 0, a: 0}
     - _DropsOnLensTiling: {r: 2.5, g: 2.5, b: 0, a: 0}
+    - _HalftoneMinMax: {r: 0, g: 0.12, b: 0, a: 0}
     - _WaterFogColor: {r: 0.13498268, g: 0.41784626, b: 0.4716981, a: 1}
   m_BuildTextureStacks: []

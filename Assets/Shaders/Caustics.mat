@@ -95,7 +95,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
-    - _CausticsBoost: 5
+    - _CausticsBoost: 1.24
     - _CausticsDistortion: 0
     - _CausticsLerpSpeed: 4
     - _ClearCoatMask: 0
@@ -107,16 +107,17 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FadeOpacityAdd: 0.05
+    - _FadeOpacityAdd: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _Pixel: 42.77
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RGBSplit: 0.01
+    - _RGBSplit: 0.012
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -132,7 +133,7 @@ Material:
     - _CausticsDistortTiling: {r: 1, g: 1, b: 0, a: 0}
     - _CausticsIntensityMinMax: {r: 0.5, g: 1.5, b: 0, a: 0}
     - _CausticsMovement: {r: -0.5, g: -0.5, b: 0, a: 0}
-    - _CausticsTiling: {r: 2, g: 1, b: 0, a: 0}
+    - _CausticsTiling: {r: 8, g: 2, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
