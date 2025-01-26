@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c1e9c70d34497489818bae80297cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 1666463681733940857}
+  _popDuration: 0.25
   _drag: 0.98
   _minSpeed: 0.5
   _jumpWindow: 0.2

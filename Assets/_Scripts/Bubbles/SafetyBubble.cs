@@ -41,7 +41,7 @@ public class SafetyBubble : MonoBehaviour
     {
         if (collectedByPlayer) return;
         
-        transform.position += bubbleVelocity + new Vector3(Mathf.Sin(Time.time * Mathf.PI * 2 * amplitude) * bubbleTurbulence, 0, 0);
+        transform.position += bubbleVelocity + new Vector3(Mathf.Sin(lifeTime * Mathf.PI * 2 * amplitude) * bubbleTurbulence, 0, 0);
 
         lifeTime += Time.deltaTime;
         if (lifeTime >= maxLifetime)

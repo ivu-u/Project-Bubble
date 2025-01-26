@@ -7,11 +7,14 @@ using UnityEngine;
 /// </summary>
 public class Bubble : MonoBehaviour
 {
+    [SerializeField] private MeshRenderer _renderer;
+    [SerializeField] private float _popDuration;
     [SerializeField] private float _drag = 0.98f; // Factor to slow down the bubble
     [SerializeField] private float _minSpeed = 0.5f; // Minimum speed before stopping the bubble
     [SerializeField] private float _jumpWindow = 0.5f;
     [SerializeField] private float _boostForce = 5f;
 
+    private MaterialPropertyBlock _mpb;
     private Player _p;
     private Rigidbody _rb;
     private float _contactTime = 0f; // Tracks how long the player has been in contact
@@ -21,6 +24,7 @@ public class Bubble : MonoBehaviour
 
     void Awake() {
         _rb = GetComponent<Rigidbody>();
+        _mpb = new();
     }
 
     void FixedUpdate() {
@@ -62,6 +66,7 @@ public class Bubble : MonoBehaviour
 
     // so it slows down after being shot and stops
     private void BubbleDrag() {
+        if (_rb.isKinematic) return;
         _rb.velocity *= _drag;
 
         if (_rb.velocity.magnitude < _minSpeed) {
@@ -72,10 +77,10 @@ public class Bubble : MonoBehaviour
 
     public void PopBubble() {
         if (isPartOfRing) {
-            _ringManager.RemoveBubble(gameObject);
-            return;
+            _ringManager.DiscardBubbleRef(gameObject);
         }
-        Destroy(gameObject);
+        enabled = false;
+        StartCoroutine(IPopAndDestroy());
     }
 
     // more jank
@@ -85,6 +90,29 @@ public class Bubble : MonoBehaviour
         if (_p == null && isPartOfRing) { _p = p; } // get ref to player to store for later
         /// Carlos Note: reverted the caching to fix some null refs;
         if (_ringManager == null && isPartOfRing) { _ringManager = ring;  }
+    }
+
+    IEnumerator IPopAndDestroy() {
+        float t = 0f;
+        while (t < _popDuration) {
+            t += Time.deltaTime;
+
+            float alpha = t / _popDuration;
+
+            // Override local scale
+            ApplyDissolve(alpha);
+
+            yield return null;
+        }
+
+        Destroy(gameObject);
+    }
+
+    void ApplyDissolve(float t) {
+        Debug.Log(t);
+        _renderer.GetPropertyBlock(_mpb);
+        _mpb.SetFloat("_Dissolve", t);
+        _renderer.SetPropertyBlock(_mpb);
     }
 
     //public void InitBubble() {
