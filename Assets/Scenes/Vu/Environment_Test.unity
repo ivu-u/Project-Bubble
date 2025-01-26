@@ -624,11 +624,46 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8288707275340363258, guid: e7ec7437de2bb384da8e2cfa2d374d64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3051da9f7287ca1499d6a24306483863, type: 2}
+    - target: {fileID: -5066493223152278515, guid: e7ec7437de2bb384da8e2cfa2d374d64,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 6.51849
+      objectReference: {fileID: 0}
+    - target: {fileID: -5066493223152278515, guid: e7ec7437de2bb384da8e2cfa2d374d64,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5066493223152278515, guid: e7ec7437de2bb384da8e2cfa2d374d64,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 13.9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e7ec7437de2bb384da8e2cfa2d374d64,
         type: 3}
       propertyPath: m_Name
       value: Sewer_Scene
       objectReference: {fileID: 0}
+    - target: {fileID: 1001741333257789220, guid: e7ec7437de2bb384da8e2cfa2d374d64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3051da9f7287ca1499d6a24306483863, type: 2}
+    - target: {fileID: 2469069890005440447, guid: e7ec7437de2bb384da8e2cfa2d374d64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3051da9f7287ca1499d6a24306483863, type: 2}
+    - target: {fileID: 5447331667604542231, guid: e7ec7437de2bb384da8e2cfa2d374d64,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: afd070047af632a4cb9eb3edcd2a0184, type: 2}
     - target: {fileID: 6734469102440866752, guid: e7ec7437de2bb384da8e2cfa2d374d64,
         type: 3}
       propertyPath: m_LocalPosition.x
