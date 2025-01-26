@@ -2,8 +2,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
-                                         IPointerDownHandler, IPointerUpHandler, IPointerClickHandler {
+public enum MainMenuBType { Start, Credits, End }
+
+public abstract class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
+                                                  IPointerDownHandler, IPointerUpHandler, IPointerClickHandler {
+
+    private event System.Action OnScaleEnd;
 
     private const string PLAYBACK_PARAM = "PlaybackTime";
 
@@ -11,7 +15,11 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     [SerializeField] private RectOscillator oscillator;
     [SerializeField] private AnimationCurve hoverCurve, downCurve,
                                             upCurve, popCurve, exitCurve;
-    [SerializeField] private float scaleTime, scaleSpeed, popTime;
+    [SerializeField] private float scaleTime, scaleSpeed, popTime, popAwaitTime;
+    [SerializeField] private bool popImmediate = true;
+    [SerializeField] private ParticleSystem parSystem;
+
+    public bool IsPopped => !interactable;
 
     private Vector3 baseScale;
     private float scaleMult = 1;
@@ -41,11 +49,18 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     }
 
     public void OnPointerClick(PointerEventData _) {
-        if (interactable) {
-            interactable = false;
-            StopAllCoroutines();
-            StartCoroutine(IPlayPopAnimation());
+        if (interactable) PopButton();
+    }
+
+    public void PopButton() {
+        interactable = false;
+        StopAllCoroutines();
+        if (popImmediate) {
             StartCoroutine(IDoScale(popCurve));
+            StartCoroutine(IPlayPopAnimation());
+        } else {
+            StartCoroutine(IDoScale(popCurve, popAwaitTime));
+            OnScaleEnd += () => StartCoroutine(IPlayPopAnimation());
         }
     }
 
@@ -65,8 +80,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
         oscillator.Toggle(true);
     }
 
-    private IEnumerator IDoScale(AnimationCurve curve) {
-        float lerpVal, target, timer = 0;
+    private IEnumerator IDoScale(AnimationCurve curve, float extraScaleTime = 0) {
+        float lerpVal, target, timer = 0,
+              scaleTime = this.scaleTime + extraScaleTime;
         while (timer < scaleTime) {
             timer = Mathf.MoveTowards(timer, scaleTime, Time.unscaledDeltaTime);
             lerpVal = timer / scaleTime;
@@ -75,6 +91,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             transform.localScale = baseScale * scaleMult;
             yield return null;
         }
+
+        OnScaleEnd?.Invoke();
+        OnScaleEnd = null;
     }
 
     private IEnumerator IPlayPopAnimation() {
@@ -85,5 +104,9 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
             animator.SetFloat(playbackParam, lerpVal);
             yield return null;
         }
+
+        DoPopBehavior();
     }
+
+    protected abstract void DoPopBehavior();
 }
