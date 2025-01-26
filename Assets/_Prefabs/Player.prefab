@@ -140,6 +140,7 @@ MonoBehaviour:
   _currNumBubbles: 3
   _c: {fileID: 7119573468303285311}
   _rotationSpeed: 50
+  _bubbleScale: 1.8
   _heldBubbles: []
 --- !u!136 &5932616733298897172
 CapsuleCollider:
