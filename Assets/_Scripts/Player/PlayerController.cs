@@ -32,6 +32,10 @@ public partial class Player : MonoBehaviour
     [SerializeField] private float groundCastTolerance;
     [SerializeField] private Transform _firePoint;
 
+    // fuck fuck fuck i copy paste it crunching
+    [SerializeField] private float minForce = 5f;
+    [SerializeField] private float maxForce = 20f;
+
     public float WalkSpeed => _rb.velocity.x;
     public float VerticalSpeed => _rb.velocity.y;
 
@@ -60,7 +64,12 @@ public partial class Player : MonoBehaviour
     }
 
     public void BoostPlayer(Vector3 dir, float force) {
-        _rb.AddForce(dir * force, ForceMode.Impulse);
+        Vector3 newforce = dir.normalized * force;
+        _rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x + newforce.x, minForce, maxForce),
+                                    Mathf.Clamp(_rb.velocity.y + newforce.y, minForce, maxForce));
+        //_rb.AddForce(dir * force, ForceMode.Impulse);
+
+        //Debug.Log(_rb.velocity);
     }
 
     protected void Movement() {
@@ -113,7 +122,7 @@ public partial class Player : MonoBehaviour
         RaycastHit hit;
         float rayLength = groundCastTolerance; // Adjust based on your character's size
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength)) {
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength, 1 << 4 | 1 << 7)) {
             _ground = hit.collider.gameObject;
             return true;
         }

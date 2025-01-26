@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class TransitionPH : MonoBehaviour {
+public class TransitionEffector : MonoBehaviour {
 
     public event System.Action OnTransitionEnd;
 

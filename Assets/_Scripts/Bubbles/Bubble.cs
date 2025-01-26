@@ -12,6 +12,7 @@ public class Bubble : MonoBehaviour
     [SerializeField] private float _jumpWindow = 0.5f;
     [SerializeField] private float _boostForce = 5f;
 
+    private Player _p;
     private Rigidbody _rb;
     private float _contactTime = 0f; // Tracks how long the player has been in contact
 
@@ -34,14 +35,16 @@ public class Bubble : MonoBehaviour
         if (other.TryGetComponent(out Player p)) {
             if (isPartOfRing) { }
             else { _contactTime = 0f; }
-
-            Vector3 collisionPoint = other.ClosestPointOnBounds(transform.position);
-            // Calculate the direction from the collision point to the player
-            Vector3 directionToPlayer = (transform.position - collisionPoint).normalized;
-
-            // Boost the player in the direction of the collision
-            p.BoostPlayer(directionToPlayer, _boostForce);
         }
+
+        if (_p == null) { return; }
+
+        Vector3 collisionPoint = other.ClosestPointOnBounds(transform.position);
+        // Calculate the direction from the collision point to the player
+        Vector3 directionToPlayer = (transform.position - collisionPoint).normalized;
+
+        // Boost the player in the direction of the collision
+        _p.BoostPlayer(directionToPlayer, _boostForce);
 
         // Pop the bubble after boosting the player
         PopBubble();
@@ -79,8 +82,12 @@ public class Bubble : MonoBehaviour
     public void IsPartOfRing(bool b, Player p, BubbleRingManager ring) {
         isPartOfRing = b;
 
-        /// if (_p == null && isPartOfRing) { _p = p; } // get ref to player to store for later
+        if (_p == null && isPartOfRing) { _p = p; } // get ref to player to store for later
         /// Carlos Note: reverted the caching to fix some null refs;
         if (_ringManager == null && isPartOfRing) { _ringManager = ring;  }
     }
+
+    //public void InitBubble() {
+
+    //}
 }
