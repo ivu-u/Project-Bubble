@@ -32,6 +32,10 @@ public partial class Player : MonoBehaviour
     [SerializeField] private float groundCastTolerance;
     [SerializeField] private Transform _firePoint;
 
+    // fuck fuck fuck i copy paste it crunching
+    [SerializeField] private float minForce = 5f;
+    [SerializeField] private float maxForce = 20f;
+
     public float WalkSpeed => _rb.velocity.x;
     public float VerticalSpeed => _rb.velocity.y;
 
@@ -60,6 +64,9 @@ public partial class Player : MonoBehaviour
     }
 
     public void BoostPlayer(Vector3 dir, float force) {
+        //_rb.AddForce(dir * force, ForceMode.Impulse);
+
+        //float clampedForce = Mathf.Clamp(force, minForce, maxForce);
         _rb.AddForce(dir * force, ForceMode.Impulse);
     }
 

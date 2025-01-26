@@ -133,7 +133,7 @@ MonoBehaviour:
   _drag: 0.98
   _minSpeed: 0.5
   _jumpWindow: 0.2
-  _boostForce: 13
+  _boostForce: 10
 --- !u!136 &1086259496759978012
 CapsuleCollider:
   m_ObjectHideFlags: 0
