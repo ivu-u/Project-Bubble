@@ -76,8 +76,8 @@ public partial class Player : MonoBehaviour
         float horizontal = _currDirection.x;
 
         // Ground Movement
-        IsGrounded();
-        if (_ground != null && _ground.tag == "GroundSAFE") {
+        //IsGrounded();
+        if (IsGrounded()) {
             if (horizontal != 0) { _accelerationTime += Time.deltaTime; }
             else if (_accelerationTime > 0) { _accelerationTime -= Time.deltaTime * 2.5f; }
             //else { _accelerationTime = 0;}
@@ -89,7 +89,7 @@ public partial class Player : MonoBehaviour
             return;
         }
 
-        _rb.velocity = new Vector3(horizontal * _moveSpeed, _rb.velocity.y, 0);
+        _rb.velocity = new Vector3(horizontal * _airMoveSpeed, _rb.velocity.y, 0);
     }
 
     protected void Jump(InputAction.CallbackContext context) {

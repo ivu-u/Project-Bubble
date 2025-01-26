@@ -131,7 +131,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _TopNormalStrength: 8.44
-    - _TopScale: 1.6
+    - _TopScale: 5
     - _TopSmoothness: 0
     - _WorkflowMode: 1
     - _ZWrite: 1

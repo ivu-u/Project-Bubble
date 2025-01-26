@@ -21,12 +21,14 @@ public partial class Player : MonoBehaviour {
     [SerializeField] private float _jumpPower;
     [SerializeField] private float _throwDelay;
     [SerializeField] private float _throwSpeed;
+    [SerializeField] private float _airMoveSpeed;
 
     // Accessors
     public float MoveSpeed => _moveSpeed;
     public float JumpPower => _jumpPower;
     public float ThrowDelay => _throwDelay;
     public float ThrowSpeed => _throwSpeed;
+    public float AirMoveSpeed => _airMoveSpeed;
     #endregion
 
     void Awake() {
@@ -52,6 +54,7 @@ public partial class Player : MonoBehaviour {
         _jumpPower = _data.JumpPower;
         _throwDelay = _data.ThrowDelay;
         _throwSpeed = _data.ThrowSpeed;
+        _airMoveSpeed = _data.AirMoveSpeed;
     }
 
     //public PlayerActionMap GetActionMap() {
