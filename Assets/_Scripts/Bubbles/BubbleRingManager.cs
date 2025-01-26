@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class BubbleRingManager : MonoBehaviour
 {
+    [SerializeField] private Player playerRef;
     [SerializeField] private GameObject _bubble;    // use this to add bubbles to the ring
     [SerializeField] private int _maxNumOfBubbles;
     [SerializeField] private float _ringRadius;
@@ -24,7 +25,7 @@ public class BubbleRingManager : MonoBehaviour
         _p = GetComponent<Player>();
 
         // subscribe to events
-        Player.OnShootBubble += ShootBubble;
+        playerRef.OnShootBubble += ShootBubble;
 
         StartCoroutine(IInitialBubbleSpawn());
     }
