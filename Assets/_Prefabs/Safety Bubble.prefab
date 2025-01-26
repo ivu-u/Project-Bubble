@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3347471868973577191}
   m_Father: {fileID: 0}
@@ -74,10 +74,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   popDuration: 0.2
   renderer: {fileID: 9090536800782808194}
-  bubbleVelocity: {x: 0, y: 0.01, z: 0}
-  bubbleTurbulence: 0.02
-  amplitude: 1.2
-  maxLifetime: 10
+  bubbleVelocity: {x: 0, y: 0.001, z: 0}
+  bubbleTurbulence: 0.001
+  amplitude: 0.1
+  maxLifetime: 20
 --- !u!136 &2593648653349620597
 CapsuleCollider:
   m_ObjectHideFlags: 0
