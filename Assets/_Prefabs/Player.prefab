@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 2524644591785761800}
   - component: {fileID: 3104111255046288594}
   - component: {fileID: 7221941521308686655}
+  - component: {fileID: 1027671453436249305}
+  - component: {fileID: 2428786083076159288}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -89,9 +91,11 @@ MonoBehaviour:
   _jumpPower: 10
   _throwDelay: 0.1
   _throwSpeed: 160
-  deathRespawnTime: 0
+  deathRespawnTime: 1
   groundCastTolerance: 1.25
   _firePoint: {fileID: 979336780497530935}
+  minForce: 1
+  maxForce: 10
   _movementCurve:
     serializedVersion: 2
     m_Curve:
@@ -224,9 +228,32 @@ MonoBehaviour:
   spawnInterval: 2
   safeBubblePrefab: {fileID: 3535673636132632760, guid: 7d8d4c53392282b479ce7af434a50a2f,
     type: 3}
-  minSpawnRadius: 2
-  spawnRadius: 7
-  screenSpawnRatioMinMax: {x: 0.25, y: 1}
+--- !u!114 &1027671453436249305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925598824289032028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c8d4d2aeb5ea2e49a89b63694da2d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 2524644591785761800}
+  maxVelocity: 7
+--- !u!114 &2428786083076159288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3925598824289032028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 945d974d27ff27b418ac563a0cad7e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4051579160038885061
 GameObject:
   m_ObjectHideFlags: 0

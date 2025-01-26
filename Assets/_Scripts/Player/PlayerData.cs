@@ -9,10 +9,12 @@ public class PlayerData : ScriptableObject {
     [SerializeField] private float _jumpPower = 5;
     [SerializeField] private float _throwDelay = 5;
     [SerializeField] private float _throwSpeed = 5;
+    [SerializeField] private float _airMoveSpeed = 5;
 
     // Accessors
     public float MoveSpeed => _moveSpeed;
     public float JumpPower => _jumpPower;
     public float ThrowDelay => _throwDelay;
     public float ThrowSpeed => _throwSpeed;
+    public float AirMoveSpeed => _airMoveSpeed;
 }
