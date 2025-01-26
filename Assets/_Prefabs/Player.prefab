@@ -84,11 +84,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 7718a43ea4a31b24baf1147982aabf90, type: 2}
-  _moveSpeed: 5
+  _moveSpeed: 10
   _jumpPower: 10
   _throwDelay: 0.1
   _throwSpeed: 160
   _firePoint: {fileID: 979336780497530935}
+  _movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0020561218
+      value: 0.47406006
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6029053
+      value: 1.0070763
+      inSlope: 0.01791205
+      outSlope: 0.01791205
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.25698975
+    - serializedVersion: 3
+      time: 1.0082304
+      value: 1.004717
+      inSlope: -0.00000711488
+      outSlope: -0.00000711488
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22892825
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &3823004662442290205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +189,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 72
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!75 &3104111255046288594
 ConstantForce:
@@ -348,7 +381,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 150
   _moveRadius: 0.5
-  _c: {fileID: 8339058241112954012}
 --- !u!1 &8227828236013455289
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,6 +509,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player Sprite
+      objectReference: {fileID: 0}
+    - target: {fileID: 628700636888651977, guid: c27cb69f32310d64c9874e8bf49a777e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700106144492813948, guid: c27cb69f32310d64c9874e8bf49a777e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5317798828778413377, guid: c27cb69f32310d64c9874e8bf49a777e,
         type: 3}
