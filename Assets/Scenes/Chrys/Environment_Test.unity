@@ -1880,6 +1880,41 @@ PrefabInstance:
       propertyPath: deathRespawnTime
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6909532456986522543, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: speed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909532456986522543, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: amplitude
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909532456986522543, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: sizeAmplitude
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909532456986522543, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: scaleAmplitude
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909532456986522543, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: scaleFrequency
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909532456986522543, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: positionAmplitude
+      value: 0.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909532456986522543, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
+        type: 3}
+      propertyPath: positionFrequency
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 9025425791181059901, guid: 4d2e12aa0ef3b4e4ba677a81cc89138c,
         type: 3}
       propertyPath: m_LocalPosition.x
