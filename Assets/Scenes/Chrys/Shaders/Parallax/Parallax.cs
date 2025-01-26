@@ -10,7 +10,7 @@ public class Parallax : MonoBehaviour {
 
     private void Update() {
         if (Input.GetAxis("Horizontal") != 0) {
-            float speed = Input.GetAxis("Horizontal");
+            float speed = Mathf.Round(Input.GetAxis("Horizontal")) * -1;
             for (int i = 0; i < materials.Count; i++) {
                 materials[i].SetVector("_Offset", new Vector4(0f, speed * (baseSpeed * (1 - (speedSubtractive * i))), 0f, 0f));
             }

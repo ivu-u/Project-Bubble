@@ -62,5 +62,5 @@ Material:
     m_Colors:
     - _Base: {r: 0.043609817, g: 0.08784265, b: 0.13207549, a: 0}
     - _Highlight: {r: 0.45789242, g: 0.69803524, b: 0.83396226, a: 0}
-    - _Offset: {r: 0, g: -0.48, b: 0, a: 0}
+    - _Offset: {r: 0, g: -0, b: 0, a: 0}
   m_BuildTextureStacks: []
