@@ -21,10 +21,16 @@ public partial class Player : MonoBehaviour
 
     public delegate void StopMovingRing();
     public event StopMovingRing OnStopMovingRing;
+
+    public event System.Action OnJump;
     #endregion
 
     [SerializeField] private float groundCastTolerance;
     [SerializeField] private Transform _firePoint;
+
+    public float WalkSpeed => _rb.velocity.x;
+    public float VerticalSpeed => _rb.velocity.y;
+
     private Transform _t;
     private Rigidbody _rb;
     private Collider _coll;
@@ -84,6 +90,7 @@ public partial class Player : MonoBehaviour
         }
 
         _rb.velocity = new Vector2(_rb.velocity.x, _currJumpPow);
+        OnJump?.Invoke();
     }
 
     #if UNITY_EDITOR
