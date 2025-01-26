@@ -8,6 +8,7 @@ using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 public class PlayerDeathAnimation : MonoBehaviour {
+    [SerializeField] private Player player;
     [SerializeField] private Transform visualAsset;
     [SerializeField] private GameObject visualEffectPrefab;
     [SerializeField] private GameObject ragdollPrefab;
@@ -18,6 +19,11 @@ public class PlayerDeathAnimation : MonoBehaviour {
 
     private List<MeshRenderer> _meshes;
     private Dictionary<MeshRenderer, MaterialPropertyBlock> propertyBlocks;
+
+    private void Awake() {
+        player.OnDeath += RunDeathAnimation;
+        player.OnSpawn += Respawn;
+    }
 
     private void Start() {
         propertyBlocks = new Dictionary<MeshRenderer, MaterialPropertyBlock>();
@@ -30,11 +36,6 @@ public class PlayerDeathAnimation : MonoBehaviour {
             propertyBlocks.Add(rend, mpb);
         }
     }
-
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.K)) { RunDeathAnimation(); }
-    }
-
     public void RunDeathAnimation() {
         StartCoroutine(DeathEventAction());
     }
@@ -65,7 +66,7 @@ public class PlayerDeathAnimation : MonoBehaviour {
         visualAsset.DOScale(0f, deathTime * 2).SetEase(Ease.InBounce);
         VisualEffect effect = Instantiate(visualEffectPrefab, visualAsset.transform.position, Quaternion.identity)
             .GetComponent<VisualEffect>();
-        effect.gameObject.SetActive(false);
+        //effect.gameObject.SetActive(false);
         foreach (var kvp in propertyBlocks)
         {
             MeshRenderer rend = kvp.Key;
