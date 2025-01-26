@@ -48,7 +48,9 @@ public class BubbleRingManager : MonoBehaviour
     private void AddBubble() {
         if (!(_heldBubbles.Count < _maxNumOfBubbles)) { return; }
         GameObject obj = Instantiate(_bubble, _c);   // jank for nows
-        obj.GetComponent<Bubble>().IsPartOfRing(true, playerRef, this);
+        obj.layer = 0;
+        Bubble bubble = obj.GetComponent<Bubble>();
+        bubble.IsPartOfRing(true, playerRef, this);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         _heldBubbles.Add(obj);
         UpdateRing();
