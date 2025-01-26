@@ -29,11 +29,11 @@ public partial class Player : MonoBehaviour
     private Collider _coll;
     private GameObject _ground;
 
-    private float _horizontal;
+    private Vector2 _currDirection; // use this if you need player direction
     private bool _canThrow = true;
 
     void FixedUpdate() {
-        _horizontal = _playerActionMap.Movement.Walk.ReadValue<Vector2>().x;
+        _currDirection = _playerActionMap.Movement.Walk.ReadValue<Vector2>();
         Movement();
     }
 
@@ -48,8 +48,8 @@ public partial class Player : MonoBehaviour
     }
 
     protected void Movement() {
-
-        _rb.velocity = new Vector3(_horizontal * _moveSpeed, _rb.velocity.y, 0);
+        float horizontal = _currDirection.x;
+        _rb.velocity = new Vector3(horizontal * _moveSpeed, _rb.velocity.y, 0);
     }
 
     protected void Jump(InputAction.CallbackContext context) {
@@ -58,6 +58,7 @@ public partial class Player : MonoBehaviour
         float _currJumpPow = _jumpPower;
 
         if (_ground.TryGetComponent<Bubble>(out Bubble bubble)) {
+            if (bubble.isPartOfRing) { return; }    // if the bubble is a part of the ring ignore
             bubble.PopBubble();
             _currJumpPow *= 1.5f;
         }

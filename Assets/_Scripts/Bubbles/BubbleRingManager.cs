@@ -34,10 +34,10 @@ public class BubbleRingManager : MonoBehaviour
 
     private void ShootBubble(Vector3 dir, Transform firePos) {
         if (_heldBubbles.Count <= 0) { return; }
-        RemoveBubble();
+        RemoveBubble(_heldBubbles[_heldBubbles.Count - 1]);
 
         GameObject obj = Instantiate(_bubble, firePos.position, Quaternion.identity);
-        obj.GetComponent<Bubble>().IsPartOfRing(false, _p);
+        obj.GetComponent<Bubble>().IsPartOfRing(false, _p, this);
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.velocity = dir * _p.ThrowSpeed;
@@ -46,16 +46,16 @@ public class BubbleRingManager : MonoBehaviour
     private void AddBubble() {
         if (!(_heldBubbles.Count < _maxNumOfBubbles)) { return; }
         GameObject obj = Instantiate(_bubble, _c);   // jank for nows
-        obj.GetComponent<Bubble>().IsPartOfRing(true, _p);
+        obj.GetComponent<Bubble>().IsPartOfRing(true, _p, this);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         _heldBubbles.Add(obj);
         UpdateRing();
     }
 
-    private void RemoveBubble() {
-        GameObject obj = _heldBubbles[_heldBubbles.Count - 1];
-        _heldBubbles.RemoveAt(_heldBubbles.Count - 1);
-        Destroy(obj);
+    public void RemoveBubble(GameObject bubble) {
+        //GameObject obj = _heldBubbles[_heldBubbles.Count - 1];
+        _heldBubbles.Remove(bubble);
+        Destroy(bubble);
         UpdateRing();
     }
 

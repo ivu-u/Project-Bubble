@@ -16,8 +16,9 @@ public class Bubble : MonoBehaviour
     private Transform _t;
     private float _contactTime = 0f; // Tracks how long the player has been in contact
 
-    private bool _isPartOfRing = true;
+    public bool isPartOfRing {  get; private set; }
     private Player _p;
+    private BubbleRingManager _ringManager;
 
     void Start() {
         _rb = GetComponent<Rigidbody>();
@@ -28,24 +29,28 @@ public class Bubble : MonoBehaviour
         BubbleDrag();
     }
 
-    void OnCollisionEnter(Collision collision) {
-        if (!(collision.collider.CompareTag("Ground"))) { return; }
+    void OnTriggerEnter(Collider other) {
+        // player check
+        if (other.TryGetComponent(out Player p)) {
+            if (isPartOfRing) { }
+            else { _contactTime = 0f; }
+        }
 
-        Vector3 collisionPoint = collision.contacts[0].point; // Get the point of contact
-        Vector3 directionToPlayer = (_t.position - collisionPoint).normalized; // Direction of boost
+        // ground check
+        if (!(other.CompareTag("Ground"))) { return; }
+        Vector3 collisionPoint = other.ClosestPointOnBounds(transform.position);
+        // Calculate the direction from the collision point to the player
+        Vector3 directionToPlayer = (transform.position - collisionPoint).normalized;
+
+        // Boost the player in the direction of the collision
         _p.BoostPlayer(directionToPlayer, _boostForce);
+
+        // Pop the bubble after boosting the player
         PopBubble();
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.TryGetComponent(out Player p)) {
-            if (_isPartOfRing) { return; }
-            _contactTime = 0f;
-        }
-    }
-
     void OnTriggerStay(Collider other) {
-        if (_isPartOfRing) { return; }
+        if (isPartOfRing) { return; }
 
         _contactTime += Time.deltaTime;
 
@@ -65,13 +70,18 @@ public class Bubble : MonoBehaviour
     }
 
     public void PopBubble() {
+        if (isPartOfRing) {
+            _ringManager.RemoveBubble(this.gameObject);
+            return;
+        }
         Destroy(this.gameObject);
     }
 
     // more jank
-    public void IsPartOfRing(bool b, Player p) {
-        _isPartOfRing = b;
+    public void IsPartOfRing(bool b, Player p, BubbleRingManager ring) {
+        isPartOfRing = b;
 
-        if(_p == null && _isPartOfRing) { _p = p; } // get ref to player to store for later
+        if(_p == null && isPartOfRing) { _p = p; } // get ref to player to store for later
+        if (_ringManager == null && isPartOfRing) { _ringManager = ring;  }
     }
 }
