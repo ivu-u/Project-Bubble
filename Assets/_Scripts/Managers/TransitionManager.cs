@@ -15,13 +15,14 @@ public class TransitionManager : MonoBehaviour {
     [SerializeField] private AnimationCurve timeScaleInCurve, timeScaleOutCurve;
     [SerializeField] private float softLoadTime, bubbleWait;
     [SerializeField] private SceneIdentifier[] sceneIDs;
+    [SerializeField] private FullScreenPassRendererFeature feature;
 
-    private readonly Dictionary<RoomTag, SceneRef> sceneMap = new();
+    private readonly Dictionary<RoomTag, SceneIdentifier> sceneMap = new();
 
     void Awake() {
         bubbleVFX.Stop();
         foreach (SceneIdentifier sceneID in sceneIDs) {
-            sceneMap[sceneID.roomTag] = sceneID.sceneRef;
+            sceneMap[sceneID.roomTag] = sceneID;
         }
     }
 
@@ -46,7 +47,9 @@ public class TransitionManager : MonoBehaviour {
     }
 
     private IEnumerator ILoadLevel(RoomTag roomTag) {
-        if (sceneMap.TryGetValue(roomTag, out SceneRef sceneRef)) {
+        if (sceneMap.TryGetValue(roomTag, out SceneIdentifier sceneID)) {
+            feature.passMaterial = sceneID.renderMat;
+            SceneRef sceneRef = sceneID.sceneRef;
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneRef.BuildIndex);
             yield return new WaitForSecondsRealtime(softLoadTime);
             while (!asyncOperation.isDone) yield return null;
@@ -64,4 +67,5 @@ public class TransitionManager : MonoBehaviour {
 public class SceneIdentifier {
     public RoomTag roomTag;
     public SceneRef sceneRef;
+    public Material renderMat;
 }
