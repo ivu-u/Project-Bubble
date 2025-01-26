@@ -30,7 +30,7 @@ public class TransitionManager : MonoBehaviour {
     private IEnumerator ILoadLevel(RoomTag roomTag) {
         if (sceneMap.TryGetValue(roomTag, out SceneRef sceneRef)) {
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneRef.BuildIndex);
-            yield return new WaitForSeconds(softLoadTime);
+            yield return new WaitForSecondsRealtime(softLoadTime);
             while (!asyncOperation.isDone) yield return null;
         }
         transitionController.Clear();

@@ -12,6 +12,7 @@ public class BubbleRingCenter : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private float _moveRadius = 0.1f;
+    private Transform _c;   // parent transform
     private Transform _t;
     private Vector3 _targetPos;
     private Vector3 _startingPos;
@@ -19,6 +20,7 @@ public class BubbleRingCenter : MonoBehaviour
 
     void Start() {
         _t = transform;
+        _c = GetComponentInParent<Transform>();
         _startingPos = _t.localPosition;
         Player.OnMovingRing += MoveRing;
         Player.OnStopMovingRing += StopMoveRing;
@@ -33,8 +35,12 @@ public class BubbleRingCenter : MonoBehaviour
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         mousePosition.z = 0;
+
+        // Convert the mouse position from world space to local space relative to the bubble ring's parent
+        Vector3 localMousePosition = _c.InverseTransformPoint(mousePosition);
+
         // Calculate the direction from the object to the mouse
-        Vector3 directionToMouse = (mousePosition - _t.localPosition).normalized;
+        Vector3 directionToMouse = localMousePosition.normalized;
 
         // Calculate the potential new position
         Vector3 targetPosition = _t.localPosition + directionToMouse * _moveSpeed * Time.deltaTime;
