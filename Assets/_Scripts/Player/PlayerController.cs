@@ -34,7 +34,6 @@ public partial class Player : MonoBehaviour
 
     void FixedUpdate() {
         _horizontal = _playerActionMap.Movement.Walk.ReadValue<Vector2>().x;
-
         Movement();
     }
 
@@ -42,6 +41,10 @@ public partial class Player : MonoBehaviour
         if (other.TryGetComponent(out Bubble b)) {
             //OnBubblePickup.Invoke(); // event to signify a bubble has been collided with
         }
+    }
+
+    public void BoostPlayer(Vector3 dir, float force) {
+        _rb.AddForce(dir * force, ForceMode.Impulse);
     }
 
     protected void Movement() {
