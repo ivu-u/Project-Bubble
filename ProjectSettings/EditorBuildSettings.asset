@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Che0gorath/MainMenu.unity
+    guid: 0ee11c39b6d70c645875a1b72be65833
+  - enabled: 1
     path: Assets/Scenes/Vu/Environment_Test.unity
     guid: 1e5beef838ebd4f4c89c37677b6db04d
   - enabled: 1
     path: Assets/Scenes/Vu/Level 2.unity
     guid: 3f0fee1c4f63c4b429248bdb260ae41d
+  - enabled: 1
+    path: Assets/Scenes/Vu/Level 3.unity
+    guid: c90e9f80b584ce345ad984979da18538
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8528638101c1b9349a9f1f6cf48e2c36,
       type: 2}

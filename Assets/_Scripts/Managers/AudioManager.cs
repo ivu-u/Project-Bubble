@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour {
         foreach (SoundClip soundClip in sfxClips) {
             sfxMap[soundClip.key] = soundClip.clip;
         }
+        PlayMusic("Music");
     }
 
     public void PlayMusic(string clipName) {

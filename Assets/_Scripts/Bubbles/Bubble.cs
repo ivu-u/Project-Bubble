@@ -110,7 +110,6 @@ public class Bubble : MonoBehaviour
     }
 
     void ApplyDissolve(float t) {
-        Debug.Log(t);
         _renderer.GetPropertyBlock(_mpb);
         _mpb.SetFloat("_Dissolve", t);
         _renderer.SetPropertyBlock(_mpb);
