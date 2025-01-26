@@ -186,7 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6113318966031991703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abc81fc8b5af1a74cbba62e1a0a73131, type: 3}
+  m_Script: {fileID: 11500000, guid: f09799f076138964cb39e4963b63638e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8782714745020249393}
@@ -205,7 +205,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 0.6
-      value: 1.2
+      value: 1.15
       inSlope: 0.13610971
       outSlope: 0.13610971
       tangentMode: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.7
-      value: 0.9
+      value: 0.95
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -350,6 +350,10 @@ MonoBehaviour:
   scaleTime: 0.2
   scaleSpeed: 2
   popTime: 0.1
+  popAwaitTime: 0.5
+  popImmediate: 0
+  parSystem: {fileID: 0}
+  buttonType: 0
 --- !u!114 &5864753563771558283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,8 +389,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1059264327, guid: 82e8f2f90923c8948935e730a6c55245, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 76c22757ac207ee4e9535d227c5caefb, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 1

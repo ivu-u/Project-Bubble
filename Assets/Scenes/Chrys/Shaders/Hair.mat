@@ -74,6 +74,7 @@ Material:
     - _Bubble_Power: 3.92
     - _Depth: 0.72
     - _DepthCutoff: 1
+    - _Dissolve: -0.57
     - _Frequency: 0.32
     - _Pixelize: 59.4
     - _QueueControl: 0
