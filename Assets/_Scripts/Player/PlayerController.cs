@@ -55,6 +55,7 @@ public partial class Player : MonoBehaviour
     [SerializeField] private float inputBufferTime = 0.2f; // Duration of the input buffer
     private float jumpBufferTimer = 0f; // Tracks time remaining in the buffer
     private bool isJumpBuffered = false; // Tracks if a jump input is buffered
+    [SerializeField] private float capsuleRadius = 1f;
 
     void FixedUpdate() {
         _currDirection = _playerActionMap.Movement.Walk.ReadValue<Vector2>();
@@ -140,25 +141,28 @@ public partial class Player : MonoBehaviour
         }
     }
 
-    //#if UNITY_EDITOR
-    //private void OnDrawGizmosSelected() {
-    //    Gizmos.color = Color.red;
-    //    Vector3 limit = transform.position + Vector3.down * groundCastTolerance;
-    //    Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCastTolerance);
-    //    Gizmos.DrawSphere(limit, 0.1f);
-    //    Gizmos.color = Color.white;
-    //}
-    //#endif
+    #if UNITY_EDITOR
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Vector3 limit = transform.position + Vector3.down * groundCastTolerance;
+        Gizmos.DrawLine(transform.position, limit);
+        Gizmos.DrawSphere(limit, capsuleRadius);
+        Gizmos.color = Color.white;
+    }
+    #endif
 
     public bool IsGrounded() {
+        // Perform the capsule cast (same as a "thicker" ray)
         RaycastHit hit;
-        float rayLength = groundCastTolerance; // Adjust based on your character's size
-
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength, 1 << 4 | 1 << 7)) {
+        if (Physics.SphereCast(_t.position, capsuleRadius, Vector3.down, out hit, groundCastTolerance, 1 << 4 | 1 << 7)) {
             _ground = hit.collider.gameObject;
+            Debug.Log("Ground detected: " + hit.collider.name);  // Debugging line to show the object hit
             return true;
         }
+
+        // No ground detected, reset _ground
         _ground = null;
+        Debug.Log("No ground detected");
         return false;
     }
 
