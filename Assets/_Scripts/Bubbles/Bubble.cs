@@ -10,13 +10,19 @@ public class Bubble : MonoBehaviour
     [SerializeField] private float _drag = 0.98f; // Factor to slow down the bubble
     [SerializeField] private float _minSpeed = 0.5f; // Minimum speed before stopping the bubble
     [SerializeField] private float _jumpWindow = 0.5f;
+    [SerializeField] private float _boostForce = 5f;
+
     private Rigidbody _rb;
+    private Transform _t;
     private float _contactTime = 0f; // Tracks how long the player has been in contact
 
-    private bool _ignorePlayerColls = true;
+    public bool isPartOfRing {  get; private set; }
+    private Player _p;
+    private BubbleRingManager _ringManager;
 
     void Start() {
         _rb = GetComponent<Rigidbody>();
+        _t = GetComponent<Transform>();
     }
 
     void FixedUpdate() {
@@ -24,14 +30,27 @@ public class Bubble : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
+        // player check
         if (other.TryGetComponent(out Player p)) {
-            if (_ignorePlayerColls) { return; }
-            _contactTime = 0f;
+            if (isPartOfRing) { }
+            else { _contactTime = 0f; }
         }
+
+        // ground check
+        if (!(other.CompareTag("Ground"))) { return; }
+        Vector3 collisionPoint = other.ClosestPointOnBounds(transform.position);
+        // Calculate the direction from the collision point to the player
+        Vector3 directionToPlayer = (transform.position - collisionPoint).normalized;
+
+        // Boost the player in the direction of the collision
+        _p.BoostPlayer(directionToPlayer, _boostForce);
+
+        // Pop the bubble after boosting the player
+        PopBubble();
     }
 
     void OnTriggerStay(Collider other) {
-        if (_ignorePlayerColls) { return; }
+        if (isPartOfRing) { return; }
 
         _contactTime += Time.deltaTime;
 
@@ -51,11 +70,18 @@ public class Bubble : MonoBehaviour
     }
 
     public void PopBubble() {
+        if (isPartOfRing) {
+            _ringManager.RemoveBubble(this.gameObject);
+            return;
+        }
         Destroy(this.gameObject);
     }
 
     // more jank
-    public void IgnorePlayerColls(bool b) {
-        _ignorePlayerColls = b;
+    public void IsPartOfRing(bool b, Player p, BubbleRingManager ring) {
+        isPartOfRing = b;
+
+        if(_p == null && isPartOfRing) { _p = p; } // get ref to player to store for later
+        if (_ringManager == null && isPartOfRing) { _ringManager = ring;  }
     }
 }

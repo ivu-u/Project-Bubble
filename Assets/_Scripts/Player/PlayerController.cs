@@ -29,12 +29,14 @@ public partial class Player : MonoBehaviour
     private Collider _coll;
     private GameObject _ground;
 
-    private float _horizontal;
+    private Vector2 _currDirection; // use this if you need player direction
     private bool _canThrow = true;
 
-    void FixedUpdate() {
-        _horizontal = _playerActionMap.Movement.Walk.ReadValue<Vector2>().x;
+    [SerializeField] private AnimationCurve _movementCurve;
+    private float _accelerationTime = 0f;
 
+    void FixedUpdate() {
+        _currDirection = _playerActionMap.Movement.Walk.ReadValue<Vector2>();
         Movement();
     }
 
@@ -44,9 +46,28 @@ public partial class Player : MonoBehaviour
         }
     }
 
-    protected void Movement() {
+    public void BoostPlayer(Vector3 dir, float force) {
+        _rb.AddForce(dir * force, ForceMode.Impulse);
+    }
 
-        _rb.velocity = new Vector3(_horizontal * _moveSpeed, _rb.velocity.y, 0);
+    protected void Movement() {
+        float horizontal = _currDirection.x;
+
+        // Ground Movement
+        IsGrounded();
+        if (_ground != null && _ground.tag == "GroundSAFE") {
+            if (horizontal != 0) { _accelerationTime += Time.deltaTime; }
+            else if (_accelerationTime > 0) { _accelerationTime -= Time.deltaTime * 2.5f; }
+            //else { _accelerationTime = 0;}
+
+            float curveValue = _movementCurve.Evaluate(_accelerationTime);
+            float finalMoveSpeed = _moveSpeed * curveValue;
+
+            _rb.velocity = new Vector3(horizontal * finalMoveSpeed, _rb.velocity.y, 0);
+            return;
+        }
+
+        _rb.velocity = new Vector3(horizontal * _moveSpeed, _rb.velocity.y, 0);
     }
 
     protected void Jump(InputAction.CallbackContext context) {
@@ -55,6 +76,7 @@ public partial class Player : MonoBehaviour
         float _currJumpPow = _jumpPower;
 
         if (_ground.TryGetComponent<Bubble>(out Bubble bubble)) {
+            if (bubble.isPartOfRing) { return; }    // if the bubble is a part of the ring ignore
             bubble.PopBubble();
             _currJumpPow *= 1.5f;
         }
@@ -65,10 +87,12 @@ public partial class Player : MonoBehaviour
     public bool IsGrounded() {
         RaycastHit hit;
         float rayLength = 1.1f; // Adjust based on your character's size
+
         if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength)) {
             _ground = hit.collider.gameObject;
             return true;
         }
+        _ground = null;
         return false;
     }
 
