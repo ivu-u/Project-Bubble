@@ -842,12 +842,12 @@ PrefabInstance:
     - target: {fileID: 152414831717126015, guid: 2dd7185198699004984d534aee6935a7,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 11.42
+      value: 12.517507
       objectReference: {fileID: 0}
     - target: {fileID: 152414831717126015, guid: 2dd7185198699004984d534aee6935a7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.84
+      value: -11.82
       objectReference: {fileID: 0}
     - target: {fileID: 152414831717126015, guid: 2dd7185198699004984d534aee6935a7,
         type: 3}
@@ -898,6 +898,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SafeZone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1363867197593210865, guid: 2dd7185198699004984d534aee6935a7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18179,7 +18184,7 @@ GameObject:
   - component: {fileID: 1027070106}
   - component: {fileID: 1027070105}
   - component: {fileID: 1027070109}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
