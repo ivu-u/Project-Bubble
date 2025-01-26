@@ -48,6 +48,7 @@ Material:
     - _Bubble_Radius: 3.55
     - _Displacement_Amplitude: 0.06
     - _Displacement_Scale: 5.1
+    - _Dissolve: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors: []

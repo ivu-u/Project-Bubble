@@ -51,7 +51,7 @@ public class PlayerDeathAnimation : MonoBehaviour {
             MeshRenderer rend = kvp.Key;
             MaterialPropertyBlock mpb = kvp.Value;
 
-            mpb.SetFloat("_Dissolve", -0.5f);
+            mpb.SetFloat("_Dissolve", -0f);
             rend.SetPropertyBlock(mpb);
         }
     }
@@ -61,9 +61,9 @@ public class PlayerDeathAnimation : MonoBehaviour {
         foreach (QuadAnimator qAnimator in quadAnimators) {
             qAnimator.enabled = false;
         }
-        visualAsset.DOShakeRotation(deathTime * 2, new Vector3(15f, 0, 0), 20);
+        //visualAsset.DOShakeRotation(deathTime * 2, new Vectr3(15f, 0, 0), 20);
         yield return new WaitForSeconds(deathTime / 3);
-        visualAsset.DOScale(0f, deathTime * 2).SetEase(Ease.InBounce);
+        visualAsset.DOScale(0.01f, deathTime * 2).SetEase(Ease.InBounce);
         VisualEffect effect = Instantiate(visualEffectPrefab, visualAsset.transform.position, Quaternion.identity)
             .GetComponent<VisualEffect>();
         //effect.gameObject.SetActive(false);
@@ -84,7 +84,7 @@ public class PlayerDeathAnimation : MonoBehaviour {
     
     void Dissolve(MeshRenderer renderer, MaterialPropertyBlock mpb)
     {
-        float currDissolve = -0.5f;
+        float currDissolve = 0f;
 
         DOTween.To(() => currDissolve, x => {
                 currDissolve = x;
