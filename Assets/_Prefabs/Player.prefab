@@ -225,8 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 516d85e75e6aafc4a8c20329ee7545f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnChance: 0.33
-  spawnInterval: 2
+  spawnChance: 0.5
+  spawnInterval: 0.5
   safeBubblePrefab: {fileID: 3535673636132632760, guid: 7d8d4c53392282b479ce7af434a50a2f,
     type: 3}
 --- !u!114 &1027671453436249305

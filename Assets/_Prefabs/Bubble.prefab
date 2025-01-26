@@ -130,6 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8c1e9c70d34497489818bae80297cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 1666463681733940857}
+  _popDuration: 0.25
   _drag: 0.98
   _minSpeed: 0.5
   _jumpWindow: 0.2
@@ -147,7 +149,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -176,7 +178,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
