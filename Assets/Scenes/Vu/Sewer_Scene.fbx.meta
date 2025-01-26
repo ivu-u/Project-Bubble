@@ -3,7 +3,47 @@ guid: e7ec7437de2bb384da8e2cfa2d374d64
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Alt Pipes
+    second: {fileID: 2100000, guid: d578f57e45095e74c86c8e49b481d7a0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cork
+    second: {fileID: 2100000, guid: 6d5d629cab064c748b94f01824743ded, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ground
+    second: {fileID: 2100000, guid: 36a1fa0f40bd5424aa601dc5eea2f2eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pipes
+    second: {fileID: 2100000, guid: 706adc55ab946ad45b2dc38ed572ba4e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sewer Tunnel
+    second: {fileID: 2100000, guid: da00367c1fb5e6546bbbf4604f29448f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Target
+    second: {fileID: 2100000, guid: 1c4376842c569e84f8039584aefb3708, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Top Tube
+    second: {fileID: 2100000, guid: 9bf2328c83ea63b419257492f45665fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Water
+    second: {fileID: 2100000, guid: a9c81fa32a9811b4cb51ae257b4019d6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
