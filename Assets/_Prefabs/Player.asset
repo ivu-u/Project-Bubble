@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 368c405b9b0dd6a4880ad14cfaab21b0, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _jumpPower: 7
-  _throwDelay: 2
-  _throwSpeed: 7
+  _moveSpeed: 7
+  _jumpPower: 8
+  _throwDelay: 0.1
+  _throwSpeed: 8
