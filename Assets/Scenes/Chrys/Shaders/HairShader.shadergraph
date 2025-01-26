@@ -4,9 +4,6 @@
     "m_ObjectId": "10a57497ee724164bc9b9fdc14d8d3dd",
     "m_Properties": [
         {
-            "m_Id": "95dbdec4f2714b8fb7aab1493bfbda2a"
-        },
-        {
             "m_Id": "dcf4072d5cd1475cb13529bf465eb0fd"
         },
         {
@@ -38,6 +35,9 @@
         },
         {
             "m_Id": "85ecc4b37cb249ef9bbb1c04c53e12c9"
+        },
+        {
+            "m_Id": "117ff409a2d14644a7e0689312435962"
         }
     ],
     "m_Keywords": [],
@@ -299,6 +299,9 @@
         },
         {
             "m_Id": "6c44c72112344041ac5975190acaf6f7"
+        },
+        {
+            "m_Id": "dae58f430df74e2b86c205e160279e03"
         }
     ],
     "m_GroupDatas": [],
@@ -1441,6 +1444,20 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
+                    "m_Id": "dae58f430df74e2b86c205e160279e03"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "3b1dfd4cd3dc4aecaadc21f5525e2f37"
+                },
+                "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
                     "m_Id": "dfbb3bd72fab478fa889be90b39d8096"
                 },
                 "m_SlotId": 2
@@ -2312,6 +2329,36 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
+    "m_ObjectId": "117ff409a2d14644a7e0689312435962",
+    "m_Guid": {
+        "m_GuidSerialized": "34199bae-fbd4-4957-8cd0-6b463c23b39e"
+    },
+    "m_Name": "HairMask",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "HairMask",
+    "m_DefaultReferenceName": "_HairMask",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
+        "m_Guid": ""
+    },
+    "isMainTexture": false,
+    "useTilingAndOffset": false,
+    "m_Modifiable": true,
+    "m_DefaultType": 0
 }
 
 {
@@ -3448,10 +3495,10 @@
     "m_Name": "Bubble Visuals",
     "m_ChildObjectList": [
         {
-            "m_Id": "95dbdec4f2714b8fb7aab1493bfbda2a"
+            "m_Id": "dcf4072d5cd1475cb13529bf465eb0fd"
         },
         {
-            "m_Id": "dcf4072d5cd1475cb13529bf465eb0fd"
+            "m_Id": "117ff409a2d14644a7e0689312435962"
         },
         {
             "m_Id": "f187e5ee1c714139a21e2701ea447fc1"
@@ -7713,6 +7760,19 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Texture2DMaterialSlot",
+    "m_ObjectId": "8ae754e3ed03445ab4644b0f900a99a1",
+    "m_Id": 0,
+    "m_DisplayName": "HairMask",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_BareResource": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.DynamicVectorMaterialSlot",
     "m_ObjectId": "8b49afb51de34332a02225684f2bd457",
     "m_Id": 0,
@@ -7974,36 +8034,6 @@
         "z": 0.0,
         "w": 0.0
     }
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Texture2DShaderProperty",
-    "m_ObjectId": "95dbdec4f2714b8fb7aab1493bfbda2a",
-    "m_Guid": {
-        "m_GuidSerialized": "73a96ee8-b5c4-4f67-b45e-b94e1ecbd144"
-    },
-    "m_Name": "Texture2D",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Texture2D",
-    "m_DefaultReferenceName": "_Texture2D",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": {
-        "m_SerializedTexture": "{\"texture\":{\"instanceID\":0}}",
-        "m_Guid": ""
-    },
-    "isMainTexture": false,
-    "useTilingAndOffset": false,
-    "m_Modifiable": true,
-    "m_DefaultType": 0
 }
 
 {
@@ -10553,6 +10583,42 @@
     },
     "m_Property": {
         "m_Id": "faaca7ba22064c588bdc35c581c61e58"
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "dae58f430df74e2b86c205e160279e03",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -751.2000122070313,
+            "y": 196.79998779296876,
+            "width": 133.60003662109376,
+            "height": 33.600006103515628
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "8ae754e3ed03445ab4644b0f900a99a1"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "117ff409a2d14644a7e0689312435962"
     }
 }
 

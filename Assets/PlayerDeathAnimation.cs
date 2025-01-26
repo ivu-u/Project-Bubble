@@ -11,6 +11,8 @@ public class PlayerDeathAnimation : MonoBehaviour {
     [SerializeField] private Transform visualAsset;
     [SerializeField] private GameObject visualEffectPrefab;
     [SerializeField] private GameObject ragdollPrefab;
+    [SerializeField] private HairAnimator animator;
+    [SerializeField] private List<QuadAnimator> quadAnimators;
 
     [SerializeField] private float deathTime = 0.5f;
 
@@ -37,13 +39,33 @@ public class PlayerDeathAnimation : MonoBehaviour {
         StartCoroutine(DeathEventAction());
     }
 
+    public void Respawn() {
+        animator.enabled = true;
+        foreach (QuadAnimator qAnimator in quadAnimators) {
+            qAnimator.enabled = true;
+        }
+        visualAsset.DOScale(1f, 0f);
+        foreach (var kvp in propertyBlocks)
+        {
+            MeshRenderer rend = kvp.Key;
+            MaterialPropertyBlock mpb = kvp.Value;
+
+            mpb.SetFloat("_Dissolve", -0.5f);
+            rend.SetPropertyBlock(mpb);
+        }
+    }
+
     private IEnumerator DeathEventAction() {
+        animator.enabled = false;
+        foreach (QuadAnimator qAnimator in quadAnimators) {
+            qAnimator.enabled = false;
+        }
         visualAsset.DOShakeRotation(deathTime * 2, new Vector3(15f, 0, 0), 20);
         yield return new WaitForSeconds(deathTime / 3);
         visualAsset.DOScale(0f, deathTime * 2).SetEase(Ease.InBounce);
         VisualEffect effect = Instantiate(visualEffectPrefab, visualAsset.transform.position, Quaternion.identity)
             .GetComponent<VisualEffect>();
-        Destroy(effect, 4f);
+        effect.gameObject.SetActive(false);
         foreach (var kvp in propertyBlocks)
         {
             MeshRenderer rend = kvp.Key;

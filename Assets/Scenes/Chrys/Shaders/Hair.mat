@@ -41,6 +41,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 1fc4b480d220d9e4cb75de18b3ea066d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HairMask:
+        m_Texture: {fileID: 2800000, guid: 2c46cc664fc3aa44682ca1d550fb9fc4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Outline_Map:
         m_Texture: {fileID: 2800000, guid: 50ab0b44f1940fc468cb32b57db54b20, type: 3}
         m_Scale: {x: 1, y: 1}
