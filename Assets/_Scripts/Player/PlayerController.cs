@@ -57,6 +57,10 @@ public partial class Player : MonoBehaviour
     private bool isJumpBuffered = false; // Tracks if a jump input is buffered
     [SerializeField] private float capsuleRadius = 1f;
 
+    void Awake() {
+        _t = transform;
+    }
+
     void FixedUpdate() {
         _currDirection = _playerActionMap.Movement.Walk.ReadValue<Vector2>();
         Movement();

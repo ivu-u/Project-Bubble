@@ -61,7 +61,7 @@ public class PlayerAnimator : MonoBehaviour {
             bobTimer += Time.deltaTime * positionFrequency;
             float stretchFactor = 1 + Mathf.Sin(bobTimer) * positionAmplitude;
             transform.GetChild(0).localScale =
-                new Vector3(1 / stretchFactor, stretchFactor, transform.GetChild(0).localScale.z);
+                new Vector3(stretchFactor > 0 ? 1 / stretchFactor : 1, stretchFactor, transform.GetChild(0).localScale.z);
 
             childBobTimer += Time.deltaTime * scaleFrequency;
             float bobOffset = Mathf.Sin(childBobTimer + offset) * scaleAmplitude;
