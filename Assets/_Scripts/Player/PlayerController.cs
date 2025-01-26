@@ -64,10 +64,12 @@ public partial class Player : MonoBehaviour
     }
 
     public void BoostPlayer(Vector3 dir, float force) {
+        Vector3 newforce = dir.normalized * force;
+        _rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x + newforce.x, minForce, maxForce),
+                                    Mathf.Clamp(_rb.velocity.y + newforce.y, minForce, maxForce));
         //_rb.AddForce(dir * force, ForceMode.Impulse);
 
-        //float clampedForce = Mathf.Clamp(force, minForce, maxForce);
-        _rb.AddForce(dir * force, ForceMode.Impulse);
+        //Debug.Log(_rb.velocity);
     }
 
     protected void Movement() {
