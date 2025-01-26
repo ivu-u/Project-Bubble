@@ -61,6 +61,6 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _Base: {r: 0.0639302, g: 0.16848525, b: 0.2754717, a: 0}
-    - _Highlight: {r: 0.19153434, g: 0.42265055, b: 0.554717, a: 0}
+    - _Highlight: {r: 0.20214789, g: 0.098695025, b: 0.284, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
