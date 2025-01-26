@@ -19,10 +19,14 @@ public partial class Player : MonoBehaviour {
 
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpPower;
+    [SerializeField] private float _throwDelay;
+    [SerializeField] private float _throwSpeed;
 
     // Accessors
     public float MoveSpeed => _moveSpeed;
     public float JumpPower => _jumpPower;
+    public float ThrowDelay => _throwDelay;
+    public float ThrowSpeed => _throwSpeed;
     #endregion
 
     void Awake() {
@@ -38,12 +42,19 @@ public partial class Player : MonoBehaviour {
         // subscribe to events
         _playerActionMap.Movement.Jump.performed += Jump;
         _playerActionMap.Actions.ShootBubble.performed += Shoot;
-        _playerActionMap.Actions.Attack.performed += Attack;
+        _playerActionMap.Actions.MoveRing.performed += MoveRing;
+        _playerActionMap.Actions.MoveRing.canceled += MoveRing;
         _playerActionMap.Enable();
     }
 
     protected void InitializeAttributes() {
         _moveSpeed = _data.MoveSpeed;
         _jumpPower = _data.JumpPower;
+        _throwDelay = _data.ThrowDelay;
+        _throwSpeed = _data.ThrowSpeed;
     }
+
+    //public PlayerActionMap GetActionMap() {
+    //    return _playerActionMap;
+    //}
 }

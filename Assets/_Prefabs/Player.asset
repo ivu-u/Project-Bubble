@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   _moveSpeed: 5
+  _jumpPower: 6
+  _throwDelay: 5
+  _throwSpeed: 4

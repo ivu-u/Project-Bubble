@@ -129,7 +129,7 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""MoveRing"",
                     ""type"": ""Button"",
                     ""id"": ""779c1fa8-1016-4fb0-8336-d4b104978306"",
                     ""expectedControlType"": ""Button"",
@@ -157,7 +157,7 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Attack"",
+                    ""action"": ""MoveRing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -173,7 +173,7 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
         // Actions
         m_Actions = asset.FindActionMap("Actions", throwIfNotFound: true);
         m_Actions_ShootBubble = m_Actions.FindAction("ShootBubble", throwIfNotFound: true);
-        m_Actions_Attack = m_Actions.FindAction("Attack", throwIfNotFound: true);
+        m_Actions_MoveRing = m_Actions.FindAction("MoveRing", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -290,13 +290,13 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Actions;
     private List<IActionsActions> m_ActionsActionsCallbackInterfaces = new List<IActionsActions>();
     private readonly InputAction m_Actions_ShootBubble;
-    private readonly InputAction m_Actions_Attack;
+    private readonly InputAction m_Actions_MoveRing;
     public struct ActionsActions
     {
         private @PlayerActionMap m_Wrapper;
         public ActionsActions(@PlayerActionMap wrapper) { m_Wrapper = wrapper; }
         public InputAction @ShootBubble => m_Wrapper.m_Actions_ShootBubble;
-        public InputAction @Attack => m_Wrapper.m_Actions_Attack;
+        public InputAction @MoveRing => m_Wrapper.m_Actions_MoveRing;
         public InputActionMap Get() { return m_Wrapper.m_Actions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -309,9 +309,9 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
             @ShootBubble.started += instance.OnShootBubble;
             @ShootBubble.performed += instance.OnShootBubble;
             @ShootBubble.canceled += instance.OnShootBubble;
-            @Attack.started += instance.OnAttack;
-            @Attack.performed += instance.OnAttack;
-            @Attack.canceled += instance.OnAttack;
+            @MoveRing.started += instance.OnMoveRing;
+            @MoveRing.performed += instance.OnMoveRing;
+            @MoveRing.canceled += instance.OnMoveRing;
         }
 
         private void UnregisterCallbacks(IActionsActions instance)
@@ -319,9 +319,9 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
             @ShootBubble.started -= instance.OnShootBubble;
             @ShootBubble.performed -= instance.OnShootBubble;
             @ShootBubble.canceled -= instance.OnShootBubble;
-            @Attack.started -= instance.OnAttack;
-            @Attack.performed -= instance.OnAttack;
-            @Attack.canceled -= instance.OnAttack;
+            @MoveRing.started -= instance.OnMoveRing;
+            @MoveRing.performed -= instance.OnMoveRing;
+            @MoveRing.canceled -= instance.OnMoveRing;
         }
 
         public void RemoveCallbacks(IActionsActions instance)
@@ -347,6 +347,6 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
     public interface IActionsActions
     {
         void OnShootBubble(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
+        void OnMoveRing(InputAction.CallbackContext context);
     }
 }
