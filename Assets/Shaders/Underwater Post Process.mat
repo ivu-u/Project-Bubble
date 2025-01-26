@@ -54,9 +54,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Depth: 1431
+    - _Depth: 15.3
     - _DepthCutoff: 1
-    - _DepthPower: 3.6
+    - _DepthPower: 0.91
     - _DistortionPixelate: 256
     - _DistortionStrength: 0.0025
     - _DropsDistortion: 0.21
