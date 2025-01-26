@@ -5,11 +5,15 @@ using DG.Tweening;
 
 public class BubbleRingManager : MonoBehaviour
 {
+    [SerializeField] private Player playerRef;
     [SerializeField] private GameObject _bubble;    // use this to add bubbles to the ring
     [SerializeField] private int _maxNumOfBubbles;
     [SerializeField] private float _ringRadius;
     [SerializeField] private int _currNumBubbles;
     [SerializeField] private Transform _c;   // bubble ring center
+    [SerializeField] private float _rotationSpeed = 10f; // Rotation speed in degrees per second
+    [SerializeField] private float _bubbleScale = 1.5f;
+    private float _currentRotationAngle = 0f;
 
     // might not need this?
     private Player _p;
@@ -21,43 +25,62 @@ public class BubbleRingManager : MonoBehaviour
         _p = GetComponent<Player>();
 
         // subscribe to events
-        Player.OnShootBubble += ShootBubble;
+        playerRef.OnShootBubble += ShootBubble;
 
         StartCoroutine(IInitialBubbleSpawn());
     }
 
+    void Update() {
+        RotateRing();
+    }
+
     private void ShootBubble(Vector3 dir, Transform firePos) {
         if (_heldBubbles.Count <= 0) { return; }
-        RemoveBubble();
+        RemoveBubble(_heldBubbles[_heldBubbles.Count - 1]);
 
         GameObject obj = Instantiate(_bubble, firePos.position, Quaternion.identity);
-        obj.GetComponent<Bubble>().IgnorePlayerColls(false);
+        obj.GetComponent<Bubble>().IsPartOfRing(false, _p, this);
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.velocity = dir * _p.ThrowSpeed;
+
+        obj.transform.DOScale(Vector3.one * _bubbleScale, 1f).SetEase(Ease.InOutSine);
     }
 
     private void AddBubble() {
         if (!(_heldBubbles.Count < _maxNumOfBubbles)) { return; }
         GameObject obj = Instantiate(_bubble, _c);   // jank for nows
-        obj.GetComponent<Bubble>().IgnorePlayerColls(true);
+        obj.GetComponent<Bubble>().IsPartOfRing(true, _p, this);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         _heldBubbles.Add(obj);
         UpdateRing();
     }
 
-    private void RemoveBubble() {
-        GameObject obj = _heldBubbles[_heldBubbles.Count - 1];
-        _heldBubbles.RemoveAt(_heldBubbles.Count - 1);
-        Destroy(obj);
+    public void RemoveBubble(GameObject bubble) {
+        //GameObject obj = _heldBubbles[_heldBubbles.Count - 1];
+        _heldBubbles.Remove(bubble);
+        Destroy(bubble);
+        UpdateRing();
+    }
+
+    private void RotateRing() {
+        // Increment the rotation angle based on time and speed
+        _currentRotationAngle += _rotationSpeed * Time.deltaTime;
+
+        // Keep the angle between 0 and 360 to avoid overflow
+        _currentRotationAngle %= 360;
+
+        // Update the positions of the bubbles in the ring
         UpdateRing();
     }
 
     private void UpdateRing() {
         // update positions of bubbles in ring with Trig
         for (int i = 0; i < _heldBubbles.Count; ++i) {
-            // angle for each object
-            float angle = i * Mathf.PI * 2f / _heldBubbles.Count;
+            float baseAngle = i * Mathf.PI * 2f / _heldBubbles.Count;
+
+            // based on rotation
+            float angle = baseAngle + Mathf.Deg2Rad * _currentRotationAngle;
 
             // position in ring (XY plane)
             float x = _c.localPosition.x + _ringRadius * Mathf.Cos(angle);

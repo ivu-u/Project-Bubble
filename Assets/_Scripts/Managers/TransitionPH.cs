@@ -8,23 +8,26 @@ public class TransitionPH : MonoBehaviour {
     [SerializeField] private float duration;
     [SerializeField] private CanvasGroup canvasGroup;
 
-    private void Awake() {
+    void Awake() {
         canvasGroup.alpha = 1;
         Clear();
     }
 
     public void Fade() {
+        StopAllCoroutines();
         StartCoroutine(IFade(1));
     }
 
     public void Clear() {
+        StopAllCoroutines();
         StartCoroutine(IFade(0));
     }
 
     private IEnumerator IFade(float target) {
-        float lerpVal, timer = 0;
+        float delta, lerpVal, timer = 0;
         while (timer < duration) {
-            timer = Mathf.MoveTowards(timer, duration, Time.unscaledDeltaTime);
+            delta = Mathf.Min(Time.unscaledDeltaTime, 0.1f);
+            timer = Mathf.MoveTowards(timer, duration, delta);
             lerpVal = timer / duration;
             canvasGroup.alpha = Mathf.Lerp(1 - target, target, lerpVal);
             yield return null;
