@@ -15,19 +15,17 @@ public class BubbleRingManager : MonoBehaviour
     [SerializeField] private float _bubbleScale = 1.5f;
     private float _currentRotationAngle = 0f;
 
-    // might not need this?
-    private Player _p;
-
     // SF so i can see it in unity editor
     [SerializeField] private List<GameObject> _heldBubbles;
 
-    void Start() {
-        _p = GetComponent<Player>();
-
+    void Awake() {
         // subscribe to events
         playerRef.OnShootBubble += ShootBubble;
+        playerRef.OnAddBubble += AddBubble;
+        playerRef.OnSpawn += PlayerRef_OnSpawn;
+        playerRef.OnDeath += PlayerRef_OnDeath;
 
-        StartCoroutine(IInitialBubbleSpawn());
+        InitRing();
     }
 
     void Update() {
@@ -39,10 +37,10 @@ public class BubbleRingManager : MonoBehaviour
         RemoveBubble(_heldBubbles[_heldBubbles.Count - 1]);
 
         GameObject obj = Instantiate(_bubble, firePos.position, Quaternion.identity);
-        obj.GetComponent<Bubble>().IsPartOfRing(false, _p, this);
+        obj.GetComponent<Bubble>().IsPartOfRing(false, playerRef, this);
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
-        rb.velocity = dir * _p.ThrowSpeed;
+        rb.velocity = dir * playerRef.ThrowSpeed;
 
         obj.transform.DOScale(Vector3.one * _bubbleScale, 1f).SetEase(Ease.InOutSine);
     }
@@ -50,7 +48,7 @@ public class BubbleRingManager : MonoBehaviour
     private void AddBubble() {
         if (!(_heldBubbles.Count < _maxNumOfBubbles)) { return; }
         GameObject obj = Instantiate(_bubble, _c);   // jank for nows
-        obj.GetComponent<Bubble>().IsPartOfRing(true, _p, this);
+        obj.GetComponent<Bubble>().IsPartOfRing(true, playerRef, this);
         obj.GetComponent<Rigidbody>().isKinematic = true;
         _heldBubbles.Add(obj);
         UpdateRing();
@@ -91,12 +89,24 @@ public class BubbleRingManager : MonoBehaviour
         }
     }
 
+    public void InitRing() => StartCoroutine(IInitialBubbleSpawn());
+
     private IEnumerator IInitialBubbleSpawn() {
         yield return new WaitForSeconds(0.5f);
 
         for (int i = 0; i < _currNumBubbles; ++i) {
             AddBubble();
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    private void PlayerRef_OnSpawn() => InitRing();
+    private void PlayerRef_OnDeath() => PopRing();
+
+    private void PopRing() {
+        while (_heldBubbles.Count > 0) {
+            Bubble bubble = _heldBubbles[0].GetComponent<Bubble>();
+            bubble.PopBubble();
         }
     }
 }

@@ -22,9 +22,13 @@ public partial class Player : MonoBehaviour
     public delegate void StopMovingRing();
     public event StopMovingRing OnStopMovingRing;
 
+    public event System.Action OnAddBubble;
     public event System.Action OnJump;
+    public event System.Action OnSpawn;
+    public event System.Action OnDeath;
     #endregion
 
+    [SerializeField] private float deathRespawnTime;
     [SerializeField] private float groundCastTolerance;
     [SerializeField] private Transform _firePoint;
 
@@ -35,6 +39,8 @@ public partial class Player : MonoBehaviour
     private Rigidbody _rb;
     private Collider _coll;
     private GameObject _ground;
+
+    private Transform checkpoint;
 
     private Vector2 _currDirection; // use this if you need player direction
     private bool _canThrow = true;
@@ -130,9 +136,37 @@ public partial class Player : MonoBehaviour
 
         OnShootBubble.Invoke(shootDirection, _firePoint);
     }
+
+    public void AddBubble() => OnAddBubble?.Invoke();
+
     private IEnumerator IThrowTimer() {
         _canThrow = false;
         yield return new WaitForSeconds(_throwDelay);
         _canThrow = true;
+    }
+
+    public void Kill() {
+        enabled = false;
+        OnDeath?.Invoke();
+        StartCoroutine(IRespawn());
+    }
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.K)) {
+            Kill();
+        }
+    }
+
+    public void SetCheckpoint(Transform checkpoint) {
+        this.checkpoint = checkpoint;
+    }
+
+    private IEnumerator IRespawn() {
+        yield return new WaitForSecondsRealtime(deathRespawnTime);
+        if (checkpoint != null) {
+            enabled = true;
+            transform.position = checkpoint.position;
+            OnSpawn?.Invoke();
+        } 
     }
 }

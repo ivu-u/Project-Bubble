@@ -88,6 +88,7 @@ MonoBehaviour:
   _jumpPower: 10
   _throwDelay: 0.1
   _throwSpeed: 160
+  deathRespawnTime: 0
   groundCastTolerance: 1.25
   _firePoint: {fileID: 979336780497530935}
   _movementCurve:
@@ -434,6 +435,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5284146998738867511, guid: c27cb69f32310d64c9874e8bf49a777e,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6295072343839011313}
     - target: {fileID: 5284146998738867511, guid: c27cb69f32310d64c9874e8bf49a777e,
         type: 3}
       propertyPath: animator

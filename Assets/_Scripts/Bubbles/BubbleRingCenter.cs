@@ -19,13 +19,18 @@ public class BubbleRingCenter : MonoBehaviour
     private Vector3 _startingPos;
     private bool _canMoveRing;
 
-    void Start() {
+    void Awake() {
         _t = transform;
         _c = GetComponentInParent<Transform>();
         _startingPos = _t.localPosition;
         playerRef.OnMovingRing += MoveRing;
         playerRef.OnStopMovingRing += StopMoveRing;
-    } 
+        playerRef.OnSpawn += PlayerRef_OnSpawn;
+        playerRef.OnDeath += PlayerRef_OnDeath;
+    }
+
+    private void PlayerRef_OnSpawn() => enabled = true;
+    private void PlayerRef_OnDeath() => enabled = false;
 
     void Update() {
         MoveBubbleRing();

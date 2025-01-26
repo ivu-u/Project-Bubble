@@ -15,4 +15,4 @@ MonoBehaviour:
   _moveSpeed: 7
   _jumpPower: 8
   _throwDelay: 0.1
-  _throwSpeed: 8
+  _throwSpeed: 12
