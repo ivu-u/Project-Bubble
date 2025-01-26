@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 /// <summary>
 /// Player Movement Behavior
@@ -52,9 +51,15 @@ public partial class Player : MonoBehaviour
     [SerializeField] private AnimationCurve _movementCurve;
     private float _accelerationTime = 0f;
 
+    // input buffering
+    [SerializeField] private float inputBufferTime = 0.2f; // Duration of the input buffer
+    private float jumpBufferTimer = 0f; // Tracks time remaining in the buffer
+    private bool isJumpBuffered = false; // Tracks if a jump input is buffered
+
     void FixedUpdate() {
         _currDirection = _playerActionMap.Movement.Walk.ReadValue<Vector2>();
         Movement();
+        ProcessBufferedInput();
     }
 
     void OnTriggerEnter(Collider other) {
@@ -64,18 +69,20 @@ public partial class Player : MonoBehaviour
     }
 
     public void BoostPlayer(Vector3 dir, float force) {
+        Vector3 newforce = dir.normalized * force;
+        _rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x + newforce.x, minForce, maxForce),
+                                    Mathf.Clamp(_rb.velocity.y + newforce.y, minForce, maxForce));
         //_rb.AddForce(dir * force, ForceMode.Impulse);
 
-        //float clampedForce = Mathf.Clamp(force, minForce, maxForce);
-        _rb.AddForce(dir * force, ForceMode.Impulse);
+        //Debug.Log(_rb.velocity);
     }
 
     protected void Movement() {
         float horizontal = _currDirection.x;
 
         // Ground Movement
-        IsGrounded();
-        if (_ground != null && _ground.tag == "GroundSAFE") {
+        //IsGrounded();
+        if (IsGrounded()) {
             if (horizontal != 0) { _accelerationTime += Time.deltaTime; }
             else if (_accelerationTime > 0) { _accelerationTime -= Time.deltaTime * 2.5f; }
             //else { _accelerationTime = 0;}
@@ -87,34 +94,61 @@ public partial class Player : MonoBehaviour
             return;
         }
 
-        _rb.velocity = new Vector3(horizontal * _moveSpeed, _rb.velocity.y, 0);
+        _rb.velocity = new Vector3(horizontal * _airMoveSpeed, _rb.velocity.y, 0);
     }
 
     protected void Jump(InputAction.CallbackContext context) {
+        // Buffer the jump input if conditions aren't valid yet
+        if (!IsGrounded()) {
+            isJumpBuffered = true;
+            jumpBufferTimer = inputBufferTime;
+            return;
+        }
 
-        if (!IsGrounded()) { return; }
+        PerformJump();
+    }
 
+    private void PerformJump() {
         float _currJumpPow = _jumpPower;
 
-        if (_ground.TryGetComponent(out Bubble bubble)
-                && !bubble.isPartOfRing) {
+        if (_ground.TryGetComponent(out Bubble bubble) && !bubble.isPartOfRing) {
             bubble.PopBubble();
             _currJumpPow *= 1.5f;
         }
 
         _rb.velocity = new Vector2(_rb.velocity.x, _currJumpPow);
         OnJump?.Invoke();
+
+        // Reset buffered jump input
+        isJumpBuffered = false;
+        jumpBufferTimer = 0f;
     }
 
-    #if UNITY_EDITOR
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = Color.red;
-        Vector3 limit = transform.position + Vector3.down * groundCastTolerance;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCastTolerance);
-        Gizmos.DrawSphere(limit, 0.1f);
-        Gizmos.color = Color.white;
+    private void ProcessBufferedInput() {
+        // Reduce the timer if a jump is buffered
+        if (isJumpBuffered) {
+            jumpBufferTimer -= Time.fixedDeltaTime;
+
+            // If grounded and buffer timer is active, process the jump
+            if (jumpBufferTimer > 0 && IsGrounded()) {
+                PerformJump();
+            }
+            else if (jumpBufferTimer <= 0) {
+                // Clear the buffer if the time expires
+                isJumpBuffered = false;
+            }
+        }
     }
-    #endif
+
+    //#if UNITY_EDITOR
+    //private void OnDrawGizmosSelected() {
+    //    Gizmos.color = Color.red;
+    //    Vector3 limit = transform.position + Vector3.down * groundCastTolerance;
+    //    Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundCastTolerance);
+    //    Gizmos.DrawSphere(limit, 0.1f);
+    //    Gizmos.color = Color.white;
+    //}
+    //#endif
 
     public bool IsGrounded() {
         RaycastHit hit;

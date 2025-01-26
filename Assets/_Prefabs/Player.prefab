@@ -86,13 +86,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 7718a43ea4a31b24baf1147982aabf90, type: 2}
-  _moveSpeed: 10
+  _moveSpeed: 11
   _jumpPower: 10
   _throwDelay: 0.1
   _throwSpeed: 160
+  _airMoveSpeed: 0
   deathRespawnTime: 1
   groundCastTolerance: 1.25
   _firePoint: {fileID: 979336780497530935}
+  minForce: 1
+  maxForce: 10
   _movementCurve:
     serializedVersion: 2
     m_Curve:
@@ -126,6 +129,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  inputBufferTime: 0.1
 --- !u!114 &3823004662442290205
 MonoBehaviour:
   m_ObjectHideFlags: 0
