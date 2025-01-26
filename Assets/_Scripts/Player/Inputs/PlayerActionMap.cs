@@ -142,7 +142,7 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""981cc735-0afc-4e06-b4cd-aeff328cbf6d"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -153,7 +153,7 @@ public partial class @PlayerActionMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""213598e4-4298-42ff-aff2-bf6dcae8b773"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
