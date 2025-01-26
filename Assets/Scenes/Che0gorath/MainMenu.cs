@@ -2,11 +2,14 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MainMenu : MonoBehaviour {
 
     [SerializeField] private MainMenuButton[] buttons;
-    [SerializeField] private float buttonPopDelay;
+    [SerializeField] private float buttonPopDelay, startTransitionDelay;
+
+    public UnityEvent OnGameStart;
 
     void Awake() {
         foreach (MainMenuButton menuButton in buttons) {
@@ -20,12 +23,12 @@ public class MainMenu : MonoBehaviour {
                 StartCoroutine(PopRemainingButtons());
                 break;
             case MainMenuBType.Credits:
+                GM.TransitionManager.LoadLevel(RoomTag.L1);
                 break;
             case MainMenuBType.End:
                 Application.Quit();
                 break;
         }
-        
     }
 
     private IEnumerator PopRemainingButtons() {
@@ -34,13 +37,7 @@ public class MainMenu : MonoBehaviour {
             button.PopButton();
             yield return new WaitForSeconds(buttonPopDelay);
         }
-    }
-
-    public void StartGame() {
-
-    }
-
-    public void ExitGame() {
-
+        yield return new WaitForSeconds(startTransitionDelay);
+        OnGameStart?.Invoke();
     }
 }
