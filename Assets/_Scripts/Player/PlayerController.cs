@@ -113,7 +113,7 @@ public partial class Player : MonoBehaviour
         RaycastHit hit;
         float rayLength = groundCastTolerance; // Adjust based on your character's size
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength)) {
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, rayLength, 1 << 4 | 1 << 7)) {
             _ground = hit.collider.gameObject;
             return true;
         }
