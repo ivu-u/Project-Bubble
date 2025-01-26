@@ -40,7 +40,6 @@ public class PlayerAnimator : MonoBehaviour {
 
         playerRef.OnShootBubble += PlayerRef_OnShootBubble;
         playerRef.OnJump += PlayerRef_OnJump;
-        playerRef.OnJump += RunJumpAnim;
     }
 
     void Update() {
@@ -73,20 +72,5 @@ public class PlayerAnimator : MonoBehaviour {
             transform.localPosition = Vector3.zero;
             transform.GetChild(0).localScale = Vector3.one;
         }
-    }
-
-    private void RunJumpAnim() {
-        StartCoroutine(JumpAnimAction());
-    }
-
-    private IEnumerator JumpAnimAction() {
-        Debug.Log("hi");
-        transform.GetChild(0).DOScaleY(0.4f, 0.1f);
-        transform.GetChild(0).DOScaleZ(1.6f, 0.1f);
-        yield return new WaitForSecondsRealtime(0.2f);
-        transform.GetChild(0).DOScaleY(1, 2f).SetEase(Ease.InOutBounce, 5);
-        transform.GetChild(0).DOScaleZ(1, 2f).SetEase(Ease.InOutBounce, 5);
-        yield return new WaitForSecondsRealtime(1.3f);
-        transform.GetChild(0).localScale = Vector3.one;
     }
 }
