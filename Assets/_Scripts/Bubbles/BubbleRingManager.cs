@@ -5,12 +5,14 @@ using DG.Tweening;
 
 public class BubbleRingManager : MonoBehaviour
 {
+    [SerializeField] private Player playerRef;
     [SerializeField] private GameObject _bubble;    // use this to add bubbles to the ring
     [SerializeField] private int _maxNumOfBubbles;
     [SerializeField] private float _ringRadius;
     [SerializeField] private int _currNumBubbles;
     [SerializeField] private Transform _c;   // bubble ring center
     [SerializeField] private float _rotationSpeed = 10f; // Rotation speed in degrees per second
+    [SerializeField] private float _bubbleScale = 1.5f;
     private float _currentRotationAngle = 0f;
 
     // might not need this?
@@ -23,7 +25,7 @@ public class BubbleRingManager : MonoBehaviour
         _p = GetComponent<Player>();
 
         // subscribe to events
-        Player.OnShootBubble += ShootBubble;
+        playerRef.OnShootBubble += ShootBubble;
 
         StartCoroutine(IInitialBubbleSpawn());
     }
@@ -41,6 +43,8 @@ public class BubbleRingManager : MonoBehaviour
         Rigidbody rb = obj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.velocity = dir * _p.ThrowSpeed;
+
+        obj.transform.DOScale(Vector3.one * _bubbleScale, 1f).SetEase(Ease.InOutSine);
     }
 
     private void AddBubble() {

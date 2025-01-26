@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf761214575f17248a3a442f79bc72bf, type: 2}
+  - {fileID: 2100000, guid: 476d13c4ed56b9745b38719bdb847f6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,7 +133,7 @@ MonoBehaviour:
   _drag: 0.98
   _minSpeed: 0.5
   _jumpWindow: 0.2
-  _boostForce: 5
+  _boostForce: 13
 --- !u!136 &1086259496759978012
 CapsuleCollider:
   m_ObjectHideFlags: 0
